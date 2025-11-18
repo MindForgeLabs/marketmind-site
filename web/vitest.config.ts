@@ -11,6 +11,8 @@ export default defineConfig({
     plugins: [react()],
     resolve: {
         alias: {
+            '@': path.resolve(dirname, 'src'),
+            '@/*': path.resolve(dirname, 'src/*'),
             '@marketmind': path.resolve(dirname, 'src'),
             '@marketmind/*': path.resolve(dirname, 'src/*'),
         },

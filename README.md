@@ -26,23 +26,39 @@ Requirements
 - Optional: Playwright for browser-based Vitest runs
 - TODO: Specify exact Node version and any system dependencies if required (e.g., Image Optimization binaries)
 
+Phase 1 Production Foundation (2025-11-18)
+- TypeScript tightened in `web/tsconfig.json`: `strict`, `noUncheckedIndexedAccess`, `noImplicitReturns`, `noUnusedLocals`, `noUnusedParameters`, `forceConsistentCasingInFileNames`.
+- Module path aliases: `@/*`, `@/components/*`, `@/lib/*`.
+- Environment variables validated once at runtime via Zod schema in `web/src/lib/env.ts`; example keys in `web/.env.example`.
+- Next.js MDX enabled, React strict mode on, and baseline security headers (HSTS, X-Frame-Options, CSP skeleton, Referrer-Policy, Permissions-Policy) in `web/next.config.ts`.
+- Tailwind: dark mode via class, extended brand theme, forms/typography plugins.
+- Tooling: Prettier config `.prettierrc`, ESLint script updates, Vitest setup with a sample test.
+
 Quick start (web app)
 1. Install dependencies for the web package:
    ```bash
    cd web
    npm install
    ```
-2. Start the development server:
+2. Copy env example and adjust values (no secrets in VCS):
+   ```bash
+   cp .env.example .env.local
+   # edit .env.local as needed
+   ```
+3. Start the development server:
    ```bash
    npm run dev
    ```
-3. Open http://localhost:3000 in your browser.
+4. Open http://localhost:3000 in your browser.
 
 Scripts (web/)
 - `npm run dev` — start Next.js dev server
 - `npm run build` — production build
 - `npm run start` — start built app
-- `npm run lint` — run ESLint
+- `npm run lint` — run ESLint (repo uses flat config extending Next + TS)
+- `npm run lint:next` — run Next.js lint
+- `npm run type-check` — ESLint + `tsc --noEmit`
+- `npm run format` — Prettier write mode over repo
 - `npm run storybook` — start Storybook at http://localhost:6006
 - `npm run build-storybook` — build static Storybook
 - `npm run test` — run Vitest (node/jsdom environment)
@@ -60,9 +76,27 @@ Entry points
 
 Environment variables
 - Next.js reads `.env`, `.env.local`, `.env.development`, etc. in the `web/` folder.
-- The project includes `@t3-oss/env-nextjs` for typed env vars, but no schema file is documented in this README.
+- Variables are validated via Zod in `web/src/lib/env.ts`. Import `env` where needed to access typed values.
 - Conventions: variables exposed to the client must be prefixed with `NEXT_PUBLIC_`.
-- TODO: Document required variables, their defaults, and example `.env.local`.
+- Example keys (see `web/.env.example`):
+  - `NEXT_PUBLIC_SITE_URL` — e.g., `https://localhost:3000` (required)
+  - `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` — domain for Plausible analytics (optional until enabled)
+  - `SENTRY_DSN` — Sentry DSN (optional until enabled)
+  - `NODE_ENV` — `development` | `test` | `production` (default: `development`)
+
+TypeScript configuration
+- Strictness flags enabled as noted above.
+- Path aliases set in `web/tsconfig.json`:
+  ```json
+  {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/lib/*": ["./src/lib/*"]
+    }
+  }
+  ```
 
 Testing
 - Unit tests: Vitest with jsdom and Testing Library
@@ -101,6 +135,7 @@ Project structure (selected)
 Setup notes and caveats
 - Install and run commands from `web/` unless you know you need the root scaffold.
 - The repository contains a minimal Next.js scaffold at the root (`app/`, `next.config.ts`), but the root `package.json` does not declare Next.js dependencies, so the runnable app is under `web/`.
+- Next 16 may warn about multiple lockfiles when both root and `web/` have lockfiles; this is harmless but you can remove the unused one or scope Turbopack root.
 - Some test setup files under `web/.storybook/` are for Storybook-specific runs.
 - TODO: Confirm whether the root scaffold should be kept or removed.
 
@@ -108,6 +143,12 @@ Deployment
 - Standard Next.js deployment applies for the `web/` package (e.g., Vercel, self-hosted Node).
 - Build with `cd web && npm run build`; start with `npm run start`.
 - TODO: Provide deployment target(s), environment variables, and secrets for each environment.
+
+Verification checklist
+- `cd web && npm run lint` — ESLint passes (may emit warnings).
+- `cd web && npm run type-check` — ESLint + TypeScript type check passes.
+- `cd web && npm run test` — Vitest sample tests pass.
+- `cd web && npm run build` — Next.js production build succeeds.
 
 License
 - TODO: Add project license (e.g., MIT) and copyright notice.

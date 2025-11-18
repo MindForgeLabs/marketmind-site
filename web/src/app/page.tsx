@@ -117,15 +117,21 @@ const metrics = [
         color: "text-blue-400",
     },
     {
-        label: "Strategy Win Rate",
+        label: "Meta-Portfolio Lift",
         value: "73.2%",
-        detail: "Out-of-sample example",
+        detail: "Out-of-sample example with meta-learner vs baseline basket",
         icon: TrendingUp,
         color: "text-purple-400",
     },
 ];
 
 const features = [
+    {
+        icon: TrendingUp,
+        title: "Meta-Learning Strategy Orchestrator",
+        description:
+            "Learns which strategies and models to deploy per market regime, using live performance and risk signals to rebalance your portfolio automatically.",
+    },
     {
         icon: Zap,
         title: "Ultra-Low Latency Runtime",
@@ -136,7 +142,7 @@ const features = [
         icon: BarChart3,
         title: "Hybrid ML Pipeline",
         description:
-            "Transformer + LSTM/TCN + classical models, exported to ONNX and optimized for production.",
+            "Meta-learning layer over Transformer, sequence, and classical models, exported to ONNX and optimized for live regime-aware selection.",
     },
     {
         icon: Code,

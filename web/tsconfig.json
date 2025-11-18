@@ -11,9 +11,10 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@marketmind/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@marketmind/*": ["./src/*"]
     },
     "allowJs": false,
     "strict": true,
@@ -23,6 +24,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,

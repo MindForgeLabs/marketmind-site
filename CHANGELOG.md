@@ -4,6 +4,29 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog, and this project adheres to Semantic Versioning (SemVer).
 
+## [0.1.1] - 2025-11-18
+
+Phase 1 Production Foundation for the `web/` app. Commit message: `chore: phase 1 production foundation`.
+
+### Added
+- Zod-based environment variable schema at `web/src/lib/env.ts` with typed `env` export.
+- Example env file `web/.env.example` documenting required keys (no secrets).
+- Prettier config `web/.prettierrc` and updated scripts for formatting and type-checking.
+- Sample unit test `web/src/components/ui/Button.test.tsx` to verify Vitest wiring.
+
+### Changed
+- Tightened TypeScript in `web/tsconfig.json`: `strict`, `noUncheckedIndexedAccess`, `noImplicitReturns`, `noUnusedLocals`, `noUnusedParameters`, `forceConsistentCasingInFileNames`.
+- Added module path aliases in `web/tsconfig.json` for `@/*`, `@/components/*`, `@/lib/*`.
+- Next.js config `web/next.config.ts`: enabled MDX via `@next/mdx`, `reactStrictMode: true`, modern image formats, and baseline security headers (HSTS, X-Frame-Options, CSP skeleton, Referrer-Policy, Permissions-Policy).
+- Tailwind theme in `web/tailwind.config.ts`: `darkMode: "class"`, expanded content globs, brand colors, fonts, radius; wired `@tailwindcss/forms` and `@tailwindcss/typography`.
+- Vitest config `web/vitest.config.ts`: added `@/` aliases, jsdom env, setup file.
+- `web/package.json` scripts: `lint` (eslint .), `lint:next` (next lint), `type-check` (eslint + tsc --noEmit), `format` (prettier --write .), and consolidated test scripts.
+
+### Notes
+- Build verification: `cd web && npm run lint && npm run type-check && npm run test && npm run build` — all succeeded locally.
+- Next 16 may warn about multiple lockfiles when the repo root also contains a scaffold; the runnable app is under `web/`.
+- CSP is a minimal starting point and will be refined in a later phase.
+
 ## [0.1.0] - 2025-11-18
 
 Inferred version bump: minor (new features and scaffolding added; no explicit breaking changes were indicated).
