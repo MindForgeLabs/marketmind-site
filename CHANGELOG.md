@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog, and this project adheres to Semantic Versioning (SemVer).
 
+## [0.1.2] - 2025-11-18
+
+Incremental documentation and configuration cleanup following Phase 1 foundation.
+
+### Added
+- Verification checklist in `README.md` for lint, type-check, test, and build.
+
+### Changed
+- Expanded `README.md` with Phase 1 summary, Quick Start update to copy `.env.example` → `.env.local`, detailed scripts (`lint:next`, `type-check`, `format`), environment variable validation via Zod, TypeScript path aliases, testing setup, project structure, deployment notes, and caveats.
+
+### Fixed
+- Security headers CSP string quotes in `web/next.config.ts` (simplified/normalized quoting inside the `Content-Security-Policy` header value).
+- Lint/type-check scripts in `web/package.json`: switched to `eslint .`, added `lint:next`, and made `type-check` run `eslint . && tsc --noEmit`.
+
+### Notes
+- Deployment guidance clarified: in Vercel, set Project Root Directory to `web/` to resolve "No Next.js version detected" when the repo root lacks a `next` dependency. Also included troubleshooting tips (cache clear, lockfiles, Node version).
+
 ## [0.1.1] - 2025-11-18
 
 Phase 1 Production Foundation for the `web/` app. Commit message: `chore: phase 1 production foundation`.
