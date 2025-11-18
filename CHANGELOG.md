@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog, and this project adheres to Semantic Versioning (SemVer).
 
+## [0.1.5] - 2025-11-18
+
+Next.js App Router typing cleanup for docs layout and MDX-backed routes.
+
+### Changed
+- `web/src/app/docs/layout.tsx` now strictly accepts `{ children }` only; removed previously used props to align with App Router layout contracts.
+
+### Fixed
+- TS71005: Removed invalid layout props `title`, `description`, and `className` from the docs layout.
+- TS71008: Ensured all `metadata` exports are typed as `Metadata` from `next` (verified in page TSX wrappers and root layout).
+- Removed untyped `export const metadata = { ... }` blocks from MDX files where TSX wrappers already provide typed metadata:
+  - `web/src/app/docs/page.mdx`
+  - `web/src/app/docs/quickstart/page.mdx`
+  - `web/src/app/docs/telemetry/page.mdx`
+
+### Verification
+- `npm run -w web type-check` — no TypeScript errors reported.
+
+### Notes
+- Page-specific titles/descriptions should be set via typed `metadata` in TSX pages or layouts; presentational headings live in the MDX/TSX content.
+
 ## [0.1.4] - 2025-11-18
 
 Documentation restructure and TypeScript hygiene fixes.
