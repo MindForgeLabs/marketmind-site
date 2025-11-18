@@ -1,0 +1,65 @@
+// app/docs/ml-pipeline/page.mdx
+export const metadata = {
+  title: "ML pipeline",
+  description:
+    "Overview of how data flows through features, models, and the meta-learning layer in MarketMind.",
+};
+
+# ML pipeline
+
+This page exists to give you a **mental model of the ML pipeline** that feeds the
+MarketMind meta-learning control plane and C++/GPU runtime.
+
+Rather than thinking in terms of one-off scripts, you should think of a **pipeline graph**
+that transforms raw market data into features, model outputs, and finally meta-strategy
+decisions.
+
+---
+
+## Stages in the pipeline
+
+At a high level, a typical pipeline has five stages:
+
+1. **Ingest**
+   - Normalize and validate tick, bar, and reference data.
+   - Handle replay, backfill, and real-time feeds through a common interface.
+
+2. **Feature engineering**
+   - Compute sliding-window features, technical factors, and regime descriptors.
+   - Cache intermediate results with a multi-tier cache (L1–L4) to keep hot paths warm.
+
+3. **Model inference**
+   - Run models (e.g., Transformers, sequence models, classical models) exported to ONNX.
+   - Use GPU-accelerated inference where latency or throughput demands it.
+
+4. **Meta-learning layer**
+   - Combine signals from multiple strategies.
+   - Select, weight, and decay strategies per regime and risk budget.
+   - Emit final position targets or order recommendations to the execution core.
+
+5. **Risk &amp; execution handoff**
+   - Apply pre-trade checks, limits, and overlays.
+   - Hand off decisions to the C++ execution router, which handles venue-specific details.
+
+---
+
+## Authoring pipelines
+
+In practice you&apos;ll author pipelines in Python:
+
+- Define a **feature graph** describing dependencies and scheduling.
+- Attach models and post-processing steps to nodes in that graph.
+- Export models and configuration in a form the C++ runtime understands.
+
+This stub intentionally omits the exact API. Once the Python SDK is stable, this page
+should be updated with real code examples and configuration snippets.
+
+---
+
+## Next steps
+
+- Read the [Architecture](/architecture) page for the system-level picture.
+- Browse the [Telemetry &amp; metrics](/docs/telemetry) page to see how to measure the
+  pipeline in production.
+- If you haven&apos;t already, go through the [Quickstart](/docs/quickstart) to get a
+  minimal end-to-end flow running.

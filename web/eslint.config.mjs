@@ -44,6 +44,10 @@ export default defineConfig([
       // React 17+ / Next.js: React in scope is not required
       "react/react-in-jsx-scope": "off",
       "react/jsx-uses-react": "off",
+      // Using TypeScript for type checking instead of PropTypes
+      "react/prop-types": "off",
+      // Allow styled-jsx attribute commonly used in Next.js examples
+      "react/no-unknown-property": ["error", { ignore: ["jsx"] }],
     },
   },
 

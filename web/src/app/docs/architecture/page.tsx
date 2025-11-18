@@ -1,76 +1,164 @@
+// app/architecture/page.mdx
+import Link from "next/link";
+import type { Metadata } from "next";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+
+export const metadata: Metadata = {
+  title: "Architecture | MarketMind",
+  description:
+    "High-level system design of the MarketMind meta-learning quant runtime, built on an ultra-low-latency C++/GPU core.",
+};
+
 export default function ArchitecturePage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
-      <div className="max-w-4xl mx-auto px-6 py-16">
-        <h1 className="text-3xl font-bold mb-8">System Architecture</h1>
+    <main className="mx-auto max-w-5xl px-6 py-10 text-slate-200">
+      <header className="mb-8 space-y-3">
+        <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+          Documentation
+        </p>
+        <h1 className="text-3xl font-semibold tracking-tight">
+          MarketMind Architecture
+        </h1>
+        <p className="max-w-2xl text-sm text-slate-400">
+          MarketMind is a meta-learning control plane that orchestrates strategies on top
+          of an ultra-low-latency C++ execution engine and GPU inference layer. The
+          architecture is designed for regime-aware trading under strict latency SLOs.
+        </p>
+      </header>
 
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Overview</h2>
-          <p className="text-slate-300 mb-4">
-            MarketMind uses a multi-language architecture where each component is optimized for its specific role:
-          </p>
-          <ul className="space-y-3 text-slate-300">
-            <li className="flex items-start gap-3">
-              <span className="text-emerald-400 font-bold">Python:</span>
-              <span>Training ML models, feature engineering, backtesting, and data preprocessing.</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-blue-400 font-bold">C++:</span>
-              <span>Real-time inference engine with ONNX Runtime + TensorRT for sub-millisecond latency.</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-purple-400 font-bold">Java:</span>
-              <span>Desktop monitoring dashboard and control plane for traders.</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-orange-400 font-bold">TypeScript:</span>
-              <span>Web interface for documentation, monitoring, and administration.</span>
-            </li>
-          </ul>
-        </section>
+      {/* End-to-end flow */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-semibold">End-to-end flow</h2>
+        <p className="text-sm text-slate-400">
+          At a high level, data flows from external feeds through a feature pipeline into
+          strategy models, a meta-learning layer, and finally a C++ execution and risk
+          engine:
+        </p>
 
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Data Flow</h2>
-          <div className="bg-slate-900 border border-white/10 rounded-lg p-6">
-            <ol className="space-y-4 text-slate-300">
-              <li>
-                <strong className="text-white">1. Training (Python):</strong>{" "}
-                Models are trained on historical data and exported to ONNX.
-              </li>
-              <li>
-                <strong className="text-white">2. Optimization (Python):</strong>{" "}
-                ONNX models are converted to TensorRT engines for GPU acceleration.
-              </li>
-              <li>
-                <strong className="text-white">3. Deployment (C++):</strong>{" "}
-                TensorRT engines are loaded into the C++ inference runtime.
-              </li>
-              <li>
-                <strong className="text-white">4. Execution (C++):</strong>{" "}
-                Live market data is transformed into features, fed through the model, and turned into signals.
-              </li>
-              <li>
-                <strong className="text-white">5. Monitoring (Java/Web):</strong>{" "}
-                Real-time metrics, PnL, and health checks are surfaced via dashboards and APIs.
-              </li>
-            </ol>
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-semibold mb-4">Performance Guarantees</h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4">
-              <div className="font-semibold mb-2">Inference Latency</div>
-              <div className="text-2xl font-bold text-emerald-400">p95 &lt; 3ms</div>
+        <Card className="border border-slate-800 bg-slate-900/40">
+          <div className="grid gap-6 px-6 py-6 text-sm sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+              <h3 className="font-medium mb-1">1. Ingest</h3>
+              <p className="text-slate-400">
+                Market, reference, and internal data are normalized, timestamped, and
+                validated with replay/backfill support.
+              </p>
             </div>
-            <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
-              <div className="font-semibold mb-2">Cache Hit Rate</div>
-              <div className="text-2xl font-bold text-blue-400">&gt; 95%</div>
+            <div>
+              <h3 className="font-medium mb-1">2. Feature pipeline</h3>
+              <p className="text-slate-400">
+                Sliding-window features, technical indicators, and regime descriptors are
+                computed on CPU/GPU and cached.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-medium mb-1">3. Strategy + meta-learner</h3>
+              <p className="text-slate-400">
+                Individual strategies emit scores and orders. A meta-learner selects,
+                weights, and decays them per regime and objective.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-medium mb-1">4. Execution &amp; risk</h3>
+              <p className="text-slate-400">
+                A C++ engine routes, throttles, and risk-checks orders with kill switches
+                and portfolio limits enforced in real time.
+              </p>
             </div>
           </div>
-        </section>
-      </div>
+        </Card>
+      </section>
+
+      {/* Core components */}
+      <section className="mt-10 space-y-4">
+        <h2 className="text-xl font-semibold">Core components</h2>
+        <ul className="list-disc space-y-2 pl-6 text-sm text-slate-400">
+          <li>
+            <strong>Data adapters</strong> – pluggable connectors for tick, bar, and
+            derived data with backfill, replay, and clock control.
+          </li>
+          <li>
+            <strong>Feature graph</strong> – declarative graph describing feature
+            dependencies, execution policies, and multi-tier caching.
+          </li>
+          <li>
+            <strong>Model runtime</strong> – on-device inference (GPU/CPU) for strategy
+            models, exported to ONNX and optimized via TensorRT.
+          </li>
+          <li>
+            <strong>Meta-policy engine</strong> – selects and reweights strategies based
+            on regimes, live performance, and risk budgets.
+          </li>
+          <li>
+            <strong>Execution router</strong> – C++ order routing with venue selection,
+            throttling, and back-pressure under strict latency budgets.
+          </li>
+          <li>
+            <strong>Risk overlays</strong> – per-strategy and portfolio-level limits,
+            circuit breakers, and kill switches enforced before orders leave the box.
+          </li>
+          <li>
+            <strong>Telemetry</strong> – unified metrics, logs, and traces for debugging,
+            tuning, and compliance-friendly observability.
+          </li>
+        </ul>
+      </section>
+
+      {/* How pieces map to your stack */}
+      <section className="mt-10 space-y-4">
+        <h2 className="text-xl font-semibold">Language & runtime boundaries</h2>
+        <p className="text-sm text-slate-400">
+          MarketMind is deliberately multi-language, with clear contracts at each boundary:
+        </p>
+        <Card className="border border-slate-800 bg-slate-900/40">
+          <div className="grid gap-4 px-6 py-6 text-sm sm:grid-cols-2">
+            <div>
+              <h3 className="font-medium mb-1">Research &amp; modeling (Python)</h3>
+              <p className="text-slate-400">
+                Feature engineering, model training, and backtests in Python, exporting
+                models to ONNX for deployment into the C++ runtime.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-medium mb-1">Execution core (C++/GPU)</h3>
+              <p className="text-slate-400">
+                ONNX Runtime + TensorRT for inference, plus custom C++ order-routing and
+                risk-checking code under hard latency SLOs.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-medium mb-1">Control plane (meta-learning)</h3>
+              <p className="text-slate-400">
+                Policy selection, regime detection, and strategy weighting, exposing a
+                contract for plugging in new models and signals.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-medium mb-1">Clients &amp; UI</h3>
+              <p className="text-slate-400">
+                Desktop, web, and service clients that talk to the runtime over stable
+                APIs with telemetry hooks and safety guarantees.
+              </p>
+            </div>
+          </div>
+        </Card>
+      </section>
+
+      {/* CTAs */}
+      <section className="mt-10 flex flex-wrap gap-4">
+        <Button asChild>
+          <Link href="/docs/ml-pipeline">Read the ML pipeline overview</Link>
+        </Button>
+        <Button asChild variant="ghost">
+          <a href="https://marketmind-docs.readthedocs.io/en/latest/">
+            View Python API (RTD)
+          </a>
+        </Button>
+        <Button asChild variant="ghost">
+          <Link href="/docs/telemetry">See telemetry &amp; metrics</Link>
+        </Button>
+      </section>
     </main>
   );
 }

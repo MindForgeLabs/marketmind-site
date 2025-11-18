@@ -7,7 +7,7 @@ Overview
 - Unit testing with Vitest, Testing Library, and jsdom.
 
 Repository layout
-- Root contains scaffolding and shared configuration files. The runnable web app lives in the web/ package.
+- Root contains shared configuration files. The runnable web app lives entirely in the `web/` package.
 
 Stack
 - Language: TypeScript, JSX/TSX
@@ -33,6 +33,14 @@ Phase 1 Production Foundation (2025-11-18)
 - Next.js MDX enabled, React strict mode on, and baseline security headers (HSTS, X-Frame-Options, CSP skeleton, Referrer-Policy, Permissions-Policy) in `web/next.config.ts`.
 - Tailwind: dark mode via class, extended brand theme, forms/typography plugins.
 - Tooling: Prettier config `.prettierrc`, ESLint script updates, Vitest setup with a sample test.
+
+Recent updates (2025-11-18)
+- Documentation pages and layout were consolidated under `web/src/app/docs/`, with several routes converted from `.tsx` to `.mdx`.
+- Added MDX typings at `web/src/types/mdx.d.ts` and updated `web/tsconfig.json` `include` to pick up `src/**/*.d.ts` so importing `*.mdx` works in TS.
+- Fixed 4 TypeScript errors:
+  - Replaced unsupported `variant="outline"` with `"ghost"` on `Button` in `web/src/app/performance/page.tsx` and `web/src/app/docs/architecture/page.tsx`.
+  - Added lightweight TS wrappers for MDX-backed pages at `web/src/app/docs/{ml-pipeline,telemetry}/page.tsx` to satisfy Next/TS route validation.
+- Verification: `npm run -w web type-check` passes; routes `/docs/ml-pipeline` and `/docs/telemetry` resolve correctly.
 
 Quick start (web app)
 1. Install dependencies for the web package:
@@ -67,7 +75,7 @@ Scripts (web/)
 - `npm run test:sb` — run tests with Storybook config
 
 Entry points
-- App router entry: `web/src/app/page.tsx`
+- App Router entry: `web/src/app/page.mdx`
 - Next.js config: `web/next.config.ts` (with MDX enabled)
 - Tailwind: `web/tailwind.config.ts`, styles in `web/src/app/globals.css` (per `components.json`)
 - Storybook config: `web/.storybook/main.cjs` and `web/.storybook/preview.ts`
@@ -117,13 +125,12 @@ Project structure (selected)
 ```
 .
 ├─ README.md                # This file
-├─ app/                     # Root scaffold (not wired to scripts)
-├─ src/                     # Root scaffold (not wired to scripts)
 ├─ web/                     # Main Next.js app package
 │  ├─ package.json          # Scripts and dependencies
 │  ├─ next.config.ts        # Next.js config with MDX
 │  ├─ src/
-│  │  └─ app/               # App router pages (e.g., page.tsx)
+│  │  └─ app/               # App Router pages (MDX + TSX; docs under app/docs)
+│  │     └─ docs/           # Documentation routes (primarily MDX)
 │  ├─ .storybook/           # Storybook configuration
 │  ├─ vitest.config.ts      # Vitest config
 │  ├─ vitest.sb.config.ts   # Vitest config for Storybook
@@ -132,11 +139,9 @@ Project structure (selected)
 ```
 
 Setup notes and caveats
-- Install and run commands from `web/` unless you know you need the root scaffold.
-- The repository contains a minimal Next.js scaffold at the root (`app/`, `next.config.ts`), but the root `package.json` does not declare Next.js dependencies, so the runnable app is under `web/`.
+- Install and run commands from `web/`; the runnable app is under `web/`.
 - Next 16 may warn about multiple lockfiles when both root and `web/` have lockfiles; this is harmless but you can remove the unused one or scope Turbopack root.
 - Some test setup files under `web/.storybook/` are for Storybook-specific runs.
-- TODO: Confirm whether the root scaffold should be kept or removed.
 
 Deployment
 - Standard Next.js deployment applies for the `web/` package (e.g., Vercel, self-hosted Node).

@@ -17,7 +17,8 @@ type PreProps = React.ComponentPropsWithoutRef<'pre'>
 type CodeProps = React.ComponentPropsWithoutRef<'code'>
 
 export function useMDXComponents(components?: MDXComponents): MDXComponents {
-    const defaults: MDXComponents = {
+    // Make defaults stable across renders to satisfy exhaustive-deps and avoid unnecessary recomputations
+    const defaults: MDXComponents = React.useMemo(() => ({
         a: (props: AnchorProps) => {
             const { href, className, target, rel, children, ...rest } = props
             const cls = mergeClass('text-cyan-300 underline underline-offset-4 hover:text-cyan-200', className)
@@ -59,8 +60,8 @@ export function useMDXComponents(components?: MDXComponents): MDXComponents {
                 </code>
             )
         },
-    }
+    }), [])
 
     // Memoize to avoid recreating the object on every render
-    return React.useMemo(() => ({ ...defaults, ...components }), [components])
+    return React.useMemo(() => ({ ...defaults, ...components }), [components, defaults])
 }

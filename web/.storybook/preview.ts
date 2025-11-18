@@ -1,7 +1,7 @@
 // D:\marketmind\web\.storybook\preview.ts
 import '../src/styles/globals.css'
 
-export default {
+const previewConfig = {
     parameters: {
         layout: 'centered',
         controls: { expanded: true },
@@ -14,3 +14,5 @@ export default {
         },
     },
 }
+
+export default previewConfig

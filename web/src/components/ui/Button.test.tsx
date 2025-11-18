@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
-import { Button } from '@/stories/Button'
+import { Button } from '@/components/ui/button'
 
-describe('Button (sample)', () => {
+describe('Button', () => {
   it('renders provided label', () => {
-    render(<Button label="Click me" size="medium" />)
-    expect(screen.getByRole('button', { name: /click me/i })).toBeInTheDocument()
+    render(<Button>Click me</Button>)
+    expect(screen.getByRole('button', { name: 'Click me' })).toBeInTheDocument()
   })
 })

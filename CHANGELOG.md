@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog, and this project adheres to Semantic Versioning (SemVer).
 
+## [0.1.4] - 2025-11-18
+
+Documentation restructure and TypeScript hygiene fixes.
+
+### Added
+- New UI components and tests under `web/src/components` (e.g., Badge, Button, Card, Input, Skeleton, and layout components like `Footer` and `Nav`).
+- Lightweight TS wrappers for MDX-backed docs pages so Next/TS can resolve routes:
+  - `web/src/app/docs/ml-pipeline/page.tsx`
+  - `web/src/app/docs/telemetry/page.tsx`
+- MDX module typings at `web/src/types/mdx.d.ts` and `web/tsconfig.json` includes updated to pick up `*.d.ts`.
+
+### Changed
+- Moved documentation pages and layout from `app/` and `src/app/` into `web/src/app/docs/`, converting several `.tsx` pages to `.mdx` where appropriate.
+- Updated README and package files to reflect the new structure and MDX-backed docs.
+
+### Fixed
+- Resolved 4 TypeScript errors in the web app:
+  - TS2322: replaced unsupported `variant="outline"` with `"ghost"` on `Button` in:
+    - `web/src/app/performance/page.tsx`
+    - `web/src/app/docs/architecture/page.tsx`
+  - TS2307: Next’s generated types could not resolve moved docs routes now authored in MDX; added TS wrappers and MDX typings as noted above.
+- `npm run -w web type-check` now passes cleanly; `/docs/ml-pipeline` and `/docs/telemetry` routes resolve via their MDX-backed wrappers.
+
+### Removed
+- Obsolete documentation files from previous locations (`app/`, `src/app/`) that were superseded by the new `web/src/app/docs/` structure.
+
 ## [0.1.3] - 2025-11-18
 
 Cleanups to achieve a warning-free Phase 1 baseline and smoother DX.

@@ -1,0 +1,58 @@
+// src/app/docs/page.mdx
+export const metadata = {
+  title: "MarketMind Documentation",
+  description: "Getting started, concepts, and guides for the MarketMind meta-learning quant runtime.",
+};
+
+# MarketMind Documentation
+
+MarketMind is a **meta-learning control plane** running on top of an **ultra-low-latency C++/GPU runtime** for systematic trading.
+
+These docs are written for:
+
+- Quant researchers and PMs who want regime-aware strategies.
+- Infra and platform engineers who care about latency, observability, and safety.
+- Power users integrating MarketMind into existing research and execution stacks.
+
+---
+
+## Information architecture
+
+The docs are organized into four major areas:
+
+### Getting Started
+
+Fastest way to see something work end-to-end.
+
+- [Quickstart](/docs/quickstart) – install the client, run health checks, execute a minimal pipeline.
+- **Installation** – coming soon.
+
+### Guides
+
+Task-oriented guides that walk through common workflows.
+
+- [Running pipelines](/docs/pipelines) – how to define, schedule, and monitor pipelines. _(stub)_
+- [Strategy examples](/docs/strategies) – examples of single-strategy and meta-strategy setups. _(stub)_
+
+### Concepts
+
+Background material and system-level mental models.
+
+- [Architecture](/architecture) – high-level system design and core components.
+- [Meta-learning & regimes](/docs/meta-learning) – how regime detection and policy selection work. _(stub)_
+- [Risk model](/docs/risk) – kill switches, limits, and overlays. _(stub)_
+
+### API Reference
+
+Deep dives and generated references.
+
+- [Python API (Read the Docs)](https://docs.marketmind.ai/) – full API reference. _(placeholder URL)_
+- [Configuration schema](/docs/config) – key config options and examples. _(stub)_
+
+---
+
+## Where to start
+
+If you want to **see something work in 5–10 minutes**, start with the [Quickstart](/docs/quickstart).
+
+If you want a **system-level picture first**, read the [Architecture](/architecture) and [Performance](/performance) pages, then come back here for specific guides.
