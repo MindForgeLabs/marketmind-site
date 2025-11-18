@@ -1,7 +1,7 @@
 Marketmind Site
 
 Overview
-- Frontend web application built with Next.js (app router) and TypeScript.
+- Frontend web application built with Next.js (App Router) and TypeScript.
 - UI styling with Tailwind CSS and MDX support.
 - Component development and docs via Storybook.
 - Unit testing with Vitest, Testing Library, and jsdom.
@@ -16,8 +16,8 @@ Stack
 - Charts: recharts
 - Testing: Vitest + @testing-library/react + jsdom
 - Component docs: Storybook 10
-- RPC/Client libs present: @connectrpc/connect, @connectrpc/connect-web
-- Package manager: npm (package-lock.json committed). Yarn/pnpm may work but are not configured here.
+- RPC/Client libs: @connectrpc/connect, @connectrpc/connect-web
+- Package manager: npm (package-lock.json committed). Yarn/pnpm/bun are not configured here.
 
 Requirements
 - Node.js: 18+ (Next.js 16 requires Node 18 or newer; 20+ recommended)
@@ -55,12 +55,13 @@ Entry points
 - App router entry: `web/src/app/page.tsx`
 - Next.js config: `web/next.config.ts` (with MDX enabled)
 - Tailwind: `web/tailwind.config.ts`, styles in `web/src/app/globals.css` (per `components.json`)
-- Storybook config: `web/.storybook/main.cjs` (+ `preview` files if present)
+- Storybook config: `web/.storybook/main.cjs` and `web/.storybook/preview.ts`
 - Vitest config: `web/vitest.config.ts` and `web/vitest.sb.config.ts`
 
 Environment variables
 - Next.js reads `.env`, `.env.local`, `.env.development`, etc. in the `web/` folder.
 - The project includes `@t3-oss/env-nextjs` for typed env vars, but no schema file is documented in this README.
+- Conventions: variables exposed to the client must be prefixed with `NEXT_PUBLIC_`.
 - TODO: Document required variables, their defaults, and example `.env.local`.
 
 Testing
@@ -71,10 +72,13 @@ Testing
 - Coverage: `npm run test:ci` (text + lcov via V8)
 - Storybook testing: `npm run test:sb`
   - Note: Storybook config integrates with Vitest via `@storybook/addon-vitest`.
+  - Uses `web/vitest.sb.config.ts` with setup `web/vitest.sb.setup.tsx`.
+  - Additional Storybook-specific mocks/config: `web/.storybook/vitest.setup.ts`.
 
 Storybook
 - Start with `cd web && npm run storybook` then open http://localhost:6006
 - Stories live under `web/src/**/*.stories.@(ts|tsx|mdx)`
+- Static build: `cd web && npm run build-storybook` (outputs to `web/storybook-static/`).
 
 Project structure (selected)
 ```
@@ -97,11 +101,11 @@ Project structure (selected)
 Setup notes and caveats
 - Install and run commands from `web/` unless you know you need the root scaffold.
 - The repository contains a minimal Next.js scaffold at the root (`app/`, `next.config.ts`), but the root `package.json` does not declare Next.js dependencies, so the runnable app is under `web/`.
-- Some test setup files under `.storybook/` may be for Storybook-specific runs.
+- Some test setup files under `web/.storybook/` are for Storybook-specific runs.
 - TODO: Confirm whether the root scaffold should be kept or removed.
 
 Deployment
-- Standard Next.js deployment applies for the `web/` package (e.g., Vercel).
+- Standard Next.js deployment applies for the `web/` package (e.g., Vercel, self-hosted Node).
 - Build with `cd web && npm run build`; start with `npm run start`.
 - TODO: Provide deployment target(s), environment variables, and secrets for each environment.
 
