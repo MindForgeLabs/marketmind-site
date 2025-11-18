@@ -1,33 +1,23 @@
-// D:\marketmind\web\vitest.setup.tsx
-import React from 'react'
-import '@testing-library/jest-dom/vitest'
-import { vi } from 'vitest'
+import * as path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vitest/config'
 
-// next/image
-vi.mock('next/image', () => ({
-    default: (props: any) => <img { ...props } />,
-}))
+const dirname =
+  typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url))
 
-// next/link
-vi.mock('next/link', () => ({
-    default: ({ href, children, ...rest }: any) => (
-        <a href= { href as string } { ...rest } > { children } < /a>
-),
-}))
-
-// next/navigation
-vi.mock('next/navigation', () => {
-    const push = vi.fn(), replace = vi.fn(), back = vi.fn(), prefetch = vi.fn()
-    return {
-        useRouter: () => ({ push, replace, back, prefetch }),
-        usePathname: () => '/',
-        useSearchParams: () => new URLSearchParams(),
-    }
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@marketmind': path.resolve(dirname, 'src'),
+      '@marketmind/*': path.resolve(dirname, 'src/*'),
+    },
+  },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./vitest.sb.setup.tsx'],
+    coverage: { provider: 'v8', reporter: ['text', 'lcov'] },
+  },
 })
-
-    // Charts expect ResizeObserver in JSDOM
-    ; (globalThis as any).ResizeObserver = class {
-        observe() { }
-        unobserve() { }
-        disconnect() { }
-    }

@@ -20,7 +20,7 @@ const config = {
         '@storybook/addon-vitest',
     ],
     docs: { autodocs: 'tag' },
-    viteFinal: async (cfg: any) => {
+    viteFinal: async (cfg) => {
         cfg.resolve = cfg.resolve || {}
         cfg.resolve.alias = {
             ...(cfg.resolve.alias || {}),

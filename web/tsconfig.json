@@ -1,4 +1,3 @@
-// web/tsconfig.json
 {
   "compilerOptions": {
     "target": "ES2020",
@@ -29,6 +28,10 @@
     "isolatedModules": true,
     "skipLibCheck": true,
     "incremental": true,
+    "types": [
+      "vitest/globals",
+      "@testing-library/jest-dom"
+    ],
     "plugins": [
       {
         "name": "next"

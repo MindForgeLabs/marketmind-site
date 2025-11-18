@@ -199,6 +199,7 @@ export default function MarketMindHero() {
     const [activeLayer, setActiveLayer] = useState(3);
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
 
         if (!autoRotate) return;

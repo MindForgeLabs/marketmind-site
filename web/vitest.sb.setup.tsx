@@ -1,24 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import '@testing-library/jest-dom/vitest'
+import React from 'react'
 import { vi } from 'vitest'
 
-// Next.js shims for unit tests:
+// next/image
 vi.mock('next/image', () => ({
-  default: (props: any) => {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img alt="" {...props} />
-  },
+  default: (props: any) => React.createElement('img', { alt: '', ...props }),
 }))
 
+// next/link
 vi.mock('next/link', () => ({
-  default: ({ href, children, ...rest }: any) => <a href={href as string} {...rest}>{children}</a>,
+  default: ({ href, children, ...rest }: any) =>
+    React.createElement('a', { href: href as string, ...rest }, children),
 }))
 
+// next/navigation
 vi.mock('next/navigation', () => {
-  const push = vi.fn()
-  const replace = vi.fn()
-  const back = vi.fn()
-  const prefetch = vi.fn()
+  const push = vi.fn(), replace = vi.fn(), back = vi.fn(), prefetch = vi.fn()
   return {
     useRouter: () => ({ push, replace, back, prefetch }),
     usePathname: () => '/',
@@ -26,7 +24,7 @@ vi.mock('next/navigation', () => {
   }
 })
 
-// Charts often expect ResizeObserver in JSDOM:
+// Charts expect ResizeObserver in JSDOM
 ;(globalThis as any).ResizeObserver = class {
   observe() {}
   unobserve() {}

@@ -1,52 +1,69 @@
-﻿// D:\marketmind\web\eslint.config.mjs
+﻿// Flat ESLint config for Next.js + TypeScript + React (ESLint 9)
 import js from "@eslint/js";
 import globals from "globals";
 import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
-import json from "@eslint/json";
+import reactPlugin from "eslint-plugin-react";
+import jsonPlugin from "@eslint/json";
+import next from "eslint-config-next";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
-    {
-        files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
-        plugins: { js },
-        extends: ["js/recommended"],
-        languageOptions: {
-            globals: { ...globals.browser, ...globals.node },
-        },
-    },
+  // Ignore generated and external folders
+  {
+    ignores: [
+      "**/node_modules/**",
+      "**/.next/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.storybook-static/**",
+      "**/package-lock.json",
+    ],
+  },
 
-    // TypeScript recommended rules
-    tseslint.configs.recommended,
+  // Base JS/TS config
+  {
+    files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "module",
+      globals: { ...globals.browser, ...globals.node },
+    },
+    settings: {
+      react: { version: "detect" },
+    },
+    plugins: {
+      react: reactPlugin,
+    },
+    extends: [
+      js.configs.recommended,
+      ...tseslint.configs.recommended,
+      next,
+      reactPlugin.configs.flat.recommended,
+    ],
+    rules: {
+      // React 17+ / Next.js: React in scope is not required
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-uses-react": "off",
+    },
+  },
 
-    // React recommended rules
-    pluginReact.configs.flat.recommended,
-
-    // JSON variants
-    {
-        files: ["**/*.json"],
-        plugins: { json },
-        language: "json/json",
-        extends: ["json/recommended"],
-    },
-    {
-        files: ["**/*.jsonc"],
-        plugins: { json },
-        language: "json/jsonc",
-        extends: ["json/recommended"],
-    },
-    {
-        files: ["**/*.json5"],
-        plugins: { json },
-        language: "json/json5",
-        extends: ["json/recommended"],
-    },
-
-    // 🔽 Our override: disable legacy "React must be in scope" rules
-    {
-        rules: {
-            "react/react-in-jsx-scope": "off",
-            "react/jsx-uses-react": "off",
-        },
-    },
+  // JSON files (lint only project JSON, not .next)
+  {
+    files: ["**/*.json"],
+    plugins: { json: jsonPlugin },
+    language: "json/json",
+    extends: [jsonPlugin.configs.recommended],
+  },
+  {
+    files: ["**/*.jsonc"],
+    plugins: { json: jsonPlugin },
+    language: "json/jsonc",
+    extends: [jsonPlugin.configs.recommended],
+  },
+  {
+    files: ["**/*.json5"],
+    plugins: { json: jsonPlugin },
+    language: "json/json5",
+    extends: [jsonPlugin.configs.recommended],
+  },
 ]);
