@@ -25,6 +25,22 @@ Next.js App Router typing cleanup for docs layout and MDX-backed routes.
 ### Notes
 - Page-specific titles/descriptions should be set via typed `metadata` in TSX pages or layouts; presentational headings live in the MDX/TSX content.
 
+## [0.1.6] - 2025-11-18
+
+Fix Vercel/Turbopack build error due to missing Lightning CSS native binding.
+
+### Fixed
+- Production build on Vercel failed with:
+  - `Error: Cannot find module '../lightningcss.linux-x64-gnu.node'` when processing `web/app/globals.css` via Tailwind v4 PostCSS pipeline.
+- Root cause: `@tailwindcss/postcss` (Tailwind CSS v4) expects `lightningcss` to be available, but it was not explicitly declared in the `web/` package, so Vercel's install did not include the platform-native binding.
+
+### Changed
+- Added `lightningcss@^1.27.0` as a direct dependency in `web/package.json` so CI installs the required native binding for the deployment platform.
+
+### Verification
+- `npm run build` at repo root (delegates to `web`) now succeeds locally with Turbopack: compile, TypeScript, page data, static generation, and optimization all pass.
+- This should unblock Vercel builds as the dependency is now present during install.
+
 ## [0.1.4] - 2025-11-18
 
 Documentation restructure and TypeScript hygiene fixes.
