@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog, and this project adheres to Semantic Versioning (SemVer).
 
+## [0.1.8] - 2025-11-18
+
+Trigger Vercel rebuild after setting CI environment variable for Lightning CSS WASM fallback.
+
+### Ops / CI
+- No code changes; this release exists to trigger a new deployment now that
+  `LIGHTNINGCSS_FORCE_WASM=1` is configured in Vercel Project Settings.
+- Expectation: Vercel builds proceed without native `.node` binding errors
+  from Tailwind/Lightning CSS, using the WASM backend instead.
+
+### Verification
+- Push this commit to `main` to kick off a new Vercel build and deployment.
+
 ## [0.1.7] - 2025-11-18
 
 Tailwind/Lightning CSS toolchain hardening for cross‑platform development and CI builds.
