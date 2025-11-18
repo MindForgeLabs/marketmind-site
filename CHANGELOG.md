@@ -4,6 +4,36 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog, and this project adheres to Semantic Versioning (SemVer).
 
+## [0.1.7] - 2025-11-18
+
+Tailwind/Lightning CSS toolchain hardening for cross‑platform development and CI builds.
+
+### Changed
+- Pinned Tailwind v4 toolchain to aligned versions to avoid oxide/loader mismatches:
+  - `tailwindcss` → `^4.1.17`
+  - `@tailwindcss/postcss` → `^4.1.17`
+
+### Removed
+- Explicit platform‑specific native packages from `web/package.json` to prevent `EBADPLATFORM` on Windows/macOS and fragile native `.node` resolution:
+  - All `lightningcss*` and `@tailwindcss/oxide-*` direct deps.
+
+### Ops / Configuration
+- Vercel: add environment variable to force the WASM backend for Lightning CSS and avoid native bindings during build:
+  - `LIGHTNINGCSS_FORCE_WASM=1` (set for Production and optionally Preview).
+
+### Why
+- CI (Vercel) builds intermittently failed with missing native bindings when Tailwind’s PostCSS pipeline attempted to load platform binaries, e.g.:
+  - `Cannot find module '../lightningcss.linux-x64-gnu.node'`
+  - `Cannot find module './tailwindcss-oxide.linux-x64-gnu.node'`
+- Forcing WASM on CI and aligning Tailwind versions makes builds deterministic across environments.
+
+### Verification
+- `npm install` at repo root — success (no platform errors).
+- `npm run build` at repo root (delegates to `web`) — Next.js 16.0.2 Turbopack build completed successfully: compile ✓, TypeScript ✓, page data ✓, static pages ✓, optimization ✓.
+
+### Notes
+- If native performance on CI is preferred later, add `@tailwindcss/oxide-linux-x64-gnu@^4.1.17` and `lightningcss-linux-x64-gnu@^1.30.1` under `optionalDependencies` in `web/package.json` so they install on Linux (Vercel) but are skipped on Windows/macOS.
+
 ## [0.1.5] - 2025-11-18
 
 Next.js App Router typing cleanup for docs layout and MDX-backed routes.
