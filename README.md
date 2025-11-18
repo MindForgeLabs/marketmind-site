@@ -55,9 +55,8 @@ Scripts (web/)
 - `npm run dev` — start Next.js dev server
 - `npm run build` — production build
 - `npm run start` — start built app
-- `npm run lint` — run ESLint (repo uses flat config extending Next + TS)
-- `npm run lint:next` — run Next.js lint
-- `npm run type-check` — ESLint + `tsc --noEmit`
+- `npm run lint` — run ESLint (flat config extends Next + TS; build artifacts are ignored)
+- `npm run type-check` — TypeScript `tsc --noEmit`
 - `npm run format` — Prettier write mode over repo
 - `npm run storybook` — start Storybook at http://localhost:6006
 - `npm run build-storybook` — build static Storybook
@@ -143,6 +142,11 @@ Deployment
 - Standard Next.js deployment applies for the `web/` package (e.g., Vercel, self-hosted Node).
 - Build with `cd web && npm run build`; start with `npm run start`.
 - TODO: Provide deployment target(s), environment variables, and secrets for each environment.
+
+Warnings resolved (Phase 1 hygiene)
+- ESLint ignore config: migrated to flat-config `ignores` in `eslint.config.mjs`. The deprecated `.eslintignore` file has been removed; ESLint v9 deprecation notice is gone.
+- Vitest JSX attribute warning: the Storybook demo style block in `src/stories/Button.tsx` is not rendered during tests (only outside `NODE_ENV === 'test'`), so the "Received true for a non-boolean attribute jsx" warning is eliminated.
+- Turbopack workspace root: configured `turbopack.root` in `web/next.config.ts` to avoid the “inferred workspace root” warning when multiple lockfiles exist.
 
 Verification checklist
 - `cd web && npm run lint` — ESLint passes (may emit warnings).

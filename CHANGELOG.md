@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog, and this project adheres to Semantic Versioning (SemVer).
 
+## [0.1.3] - 2025-11-18
+
+Cleanups to achieve a warning-free Phase 1 baseline and smoother DX.
+
+### Added
+- `turbopack.root` in `web/next.config.ts` to correctly point Turbopack at the repository root when multiple lockfiles exist.
+
+### Changed
+- Hardened `web` lint script to pass explicit config and ignores so `.next/**` is never linted.
+- Documentation updates in `README.md` to reflect flat ESLint config usage and current scripts.
+
+### Fixed
+- Migrated ignore patterns to flat config (`eslint.config.mjs`) and removed deprecated `.eslintignore`, silencing ESLint v9 deprecation warnings.
+- Replaced navigational `<a>` with `next/link` in `web/src/components/Navigation.tsx` to satisfy `@next/next/no-html-link-for-pages`.
+- Eliminated Vitest warning "Received true for a non-boolean attribute jsx" by conditionally rendering the Storybook demo `<style jsx>` block only outside test environment.
+- Resolved Turbopack workspace root warning due to multiple lockfiles via `turbopack.root`.
+
 ## [0.1.2] - 2025-11-18
 
 Incremental documentation and configuration cleanup following Phase 1 foundation.

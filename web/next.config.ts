@@ -1,5 +1,7 @@
 import type { NextConfig } from 'next'
 import createMDX from '@next/mdx'
+import * as path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 const withMDX = createMDX({ extension: /\.mdx?$/ })
 
@@ -34,6 +36,9 @@ const securityHeaders: { key: string; value: string }[] = [
   },
 ]
 
+// Resolve directory for ESM/TS config (Node may not define __dirname in ESM)
+const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url))
+
 const config: NextConfig = {
   reactStrictMode: true,
   images: {
@@ -41,6 +46,11 @@ const config: NextConfig = {
   },
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
   experimental: { mdxRs: true },
+  // Help Turbopack/Next infer the intended workspace root in a repo with a root scaffold
+  turbopack: {
+    // Treat the monorepo root as the workspace root while building the web app
+    root: path.join(dirname, '..'),
+  },
   async headers() {
     return [
       {

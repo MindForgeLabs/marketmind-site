@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 const navigation = [
@@ -19,30 +20,30 @@ export default function Navigation() {
             <div className="max-w-7xl mx-auto px-6">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo / brand */}
-                    <a href="/" className="flex items-center gap-2">
+                    <Link href="/" className="flex items-center gap-2">
                         <div className="w-8 h-8 bg-gradient-to-br from-emerald-400 to-blue-400 rounded-lg flex items-center justify-center">
                             <span className="text-slate-950 font-bold text-lg">M</span>
                         </div>
                         <span className="text-xl font-bold">MarketMind</span>
-                    </a>
+                    </Link>
 
                     {/* Desktop nav */}
                     <div className="hidden md:flex items-center gap-8">
                         {navigation.map((item) => (
-                            <a
+                            <Link
                                 key={item.name}
                                 href={item.href}
                                 className="text-slate-300 hover:text-emerald-400 transition font-medium"
                             >
                                 {item.name}
-                            </a>
+                            </Link>
                         ))}
-                        <a
+                        <Link
                             href="/contact"
                             className="px-6 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-lg font-semibold hover:from-emerald-600 hover:to-emerald-700 transition"
                         >
                             Get Started
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Mobile menu button */}
@@ -66,22 +67,22 @@ export default function Navigation() {
                     <div className="md:hidden py-4 border-t border-white/10">
                         <div className="flex flex-col gap-4">
                             {navigation.map((item) => (
-                                <a
+                                <Link
                                     key={item.name}
                                     href={item.href}
                                     className="text-slate-300 hover:text-emerald-400 transition font-medium"
                                     onClick={() => setMobileMenuOpen(false)}
                                 >
                                     {item.name}
-                                </a>
+                                </Link>
                             ))}
-                            <a
+                            <Link
                                 href="/contact"
                                 className="px-6 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-lg font-semibold hover:from-emerald-600 hover:to-emerald-700 transition text-center"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
                                 Get Started
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 )}

@@ -29,13 +29,16 @@ export const Button = ({
       {...props}
     >
       {label}
-      {/* styled-jsx style block for Storybook example */}
-      {/* eslint-disable-next-line react/no-unknown-property */}
-      <style jsx>{`
-        button {
-          background-color: ${backgroundColor};
-        }
-      `}</style>
+      {/* styled-jsx style block for Storybook example.
+          In test environment (Vitest), avoid rendering the styled-jsx prop to prevent
+          the React warning: "Received true for a non-boolean attribute jsx". */}
+      {process.env.NODE_ENV !== 'test' ? (
+        <style jsx>{`
+          button {
+            background-color: ${backgroundColor};
+          }
+        `}</style>
+      ) : null}
     </button>
   );
 };
