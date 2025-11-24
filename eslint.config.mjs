@@ -1,49 +1,73 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
+﻿// Flat ESLint config for Next.js + TypeScript + React (ESLint 9)
+import js from "@eslint/js";
+import globals from "globals";
+import tseslint from "typescript-eslint";
+import reactPlugin from "eslint-plugin-react";
+import jsonPlugin from "@eslint/json";
+import next from "eslint-config-next";
+import { defineConfig } from "eslint/config";
 
-const eslintConfig = defineConfig([
-  // Hard ignores to ensure ESLint never walks build artifacts or non-code docs
+export default defineConfig([
+  // Ignore generated and external folders
   {
-    // Flat-config native ignores (supersedes .eslintignore)
     ignores: [
-      "**/.next/**",
       "**/node_modules/**",
-      "**/coverage/**",
-      "**/out/**",
+      "**/.next/**",
+      "**/dist/**",
       "**/build/**",
-      "**/storybook-static/**",
-      "**/*.json",
-      "**/*.md",
-      "**/*.mdx",
-      "next-env.d.ts",
+      "**/.storybook-static/**",
+      "**/package-lock.json",
     ],
   },
-  ...nextVitals,
-  ...nextTs,
-  // Global ignores to prevent walking build artifacts or caches
-  globalIgnores([
-    ".next/**",
-    "node_modules/**",
-    "out/**",
-    "build/**",
-    "coverage/**",
-    "storybook-static/**",
-    "next-env.d.ts",
-  ]),
-  // Settings and scope adjustments
+
+  // Base JS/TS config
   {
+    files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "module",
+      globals: { ...globals.browser, ...globals.node },
+    },
     settings: {
-      react: {
-        version: "detect",
-      },
+      react: { version: "detect" },
+    },
+    plugins: {
+      react: reactPlugin,
+    },
+    extends: [
+      js.configs.recommended,
+      ...tseslint.configs.recommended,
+      next,
+      reactPlugin.configs.flat.recommended,
+    ],
+    rules: {
+      // React 17+ / Next.js: React in scope is not required
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-uses-react": "off",
+      // Using TypeScript for type checking instead of PropTypes
+      "react/prop-types": "off",
+      // Allow styled-jsx attribute commonly used in Next.js examples
+      "react/no-unknown-property": ["error", { ignore: ["jsx"] }],
     },
   },
-  // Apply React rules only to code files, never to JSON or other assets
+
+  // JSON files (lint only project JSON, not .next)
   {
-    files: ["**/*.{js,jsx,ts,tsx}"],
-    rules: {},
+    files: ["**/*.json"],
+    plugins: { json: jsonPlugin },
+    language: "json/json",
+    extends: [jsonPlugin.configs.recommended],
+  },
+  {
+    files: ["**/*.jsonc"],
+    plugins: { json: jsonPlugin },
+    language: "json/jsonc",
+    extends: [jsonPlugin.configs.recommended],
+  },
+  {
+    files: ["**/*.json5"],
+    plugins: { json: jsonPlugin },
+    language: "json/json5",
+    extends: [jsonPlugin.configs.recommended],
   },
 ]);
-
-export default eslintConfig;

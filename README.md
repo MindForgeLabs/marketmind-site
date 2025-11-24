@@ -1,168 +1,207 @@
-Marketmind Site
+# MarketMind Site
 
-Overview
-- Frontend web application built with Next.js (App Router) and TypeScript.
-- UI styling with Tailwind CSS and MDX support.
-- Component development and docs via Storybook.
-- Unit testing with Vitest, Testing Library, and jsdom.
+Modern marketing/analytics site built with Next.js App Router, TypeScript, Tailwind CSS, MDX content, Vitest testing, and Storybook for UI docs.
 
-Repository layout
-- Root contains shared configuration files. The runnable web app lives entirely in the `web/` package.
+This README documents the stack, requirements, commands, environment variables, tests, and structure. Unknowns are marked as TODOs.
 
-Stack
-- Language: TypeScript, JSX/TSX
-- Framework: Next.js 16 (in web/)
-- UI: Tailwind CSS 4, MDX via @next/mdx
-- Charts: recharts
-- Testing: Vitest + @testing-library/react + jsdom
-- Component docs: Storybook 10
-- RPC/Client libs: @connectrpc/connect, @connectrpc/connect-web
-- Package manager: npm (package-lock.json committed). Yarn/pnpm/bun are not configured here.
+## Overview
 
-Requirements
-- Node.js: 18+ (Next.js 16 requires Node 18 or newer; 20+ recommended)
-- npm: 9+ (bundled with Node)
-- Browsers for Storybook/testing UI
-- Optional: Playwright for browser-based Vitest runs
-- TODO: Specify exact Node version and any system dependencies if required (e.g., Image Optimization binaries)
+- App router pages under `src/app` with MDX support for docs (e.g., `src/app/docs/...`).
+- Tailwind CSS for styling with a custom theme and Geist fonts via `next/font`.
+- Storybook for component development/documentation.
+- Vitest for unit tests (with JSDOM). Optional browser/UI runners available.
+- Basic API route example at `src/app/api/positions/route.ts`.
 
-Phase 1 Production Foundation (2025-11-18)
-- TypeScript tightened in `web/tsconfig.json`: `strict`, `noUncheckedIndexedAccess`, `noImplicitReturns`, `noUnusedLocals`, `noUnusedParameters`, `forceConsistentCasingInFileNames`.
-- Module path aliases: `@/*`, `@/components/*`, `@/lib/*`.
-- Environment variables validated once at runtime via Zod schema in `web/src/lib/env.ts`; example keys in `web/.env.example`.
-- Next.js MDX enabled, React strict mode on, and baseline security headers (HSTS, X-Frame-Options, CSP skeleton, Referrer-Policy, Permissions-Policy) in `web/next.config.ts`.
-- Tailwind: dark mode via class, extended brand theme, forms/typography plugins.
-- Tooling: Prettier config `.prettierrc`, ESLint script updates, Vitest setup with a sample test.
+## Tech Stack
 
-Recent updates (2025-11-18)
-- Documentation pages and layout were consolidated under `web/src/app/docs/`, with several routes converted from `.tsx` to `.mdx`.
-- Added MDX typings at `web/src/types/mdx.d.ts` and updated `web/tsconfig.json` `include` to pick up `src/**/*.d.ts` so importing `*.mdx` works in TS.
-- Fixed 4 TypeScript errors:
-  - Replaced unsupported `variant="outline"` with `"ghost"` on `Button` in `web/src/app/performance/page.tsx` and `web/src/app/docs/architecture/page.tsx`.
-  - Added lightweight TS wrappers for MDX-backed pages at `web/src/app/docs/{ml-pipeline,telemetry}/page.tsx` to satisfy Next/TS route validation.
-- Verification: `npm run -w web type-check` passes; routes `/docs/ml-pipeline` and `/docs/telemetry` resolve correctly.
+- Language: TypeScript
+- Framework: Next.js `16.x` (App Router)
+- React: `19.x`
+- Styling: Tailwind CSS `4.x`, `@tailwindcss/forms`, `@tailwindcss/typography`
+- MDX: `@next/mdx` (App Router MDX pages)
+- Testing: Vitest `4.x`, Testing Library (`@testing-library/react`, `jest-dom`), optional `@vitest/ui`
+- Storybook: `^10` (Next.js + Vite builder)
+- RPC/Client libs: `@connectrpc/*` (web client) [not yet wired end-to-end]
+- Build tooling: Vite for tests, ESLint `^9`, Prettier `^3`
 
-Quick start (web app)
-1. Install dependencies for the web package:
+## Requirements
+
+- Node.js >= 18.18 (LTS) or >= 20 recommended
+- npm (project ships with `package-lock.json`)
+  - You can use `pnpm`/`yarn`/`bun` if desired, but npm is the default in this repo
+
+## Getting Started (Development)
+
+1. Install dependencies:
+
    ```bash
-   cd web
    npm install
    ```
-2. Copy env example and adjust values (no secrets in VCS):
-   ```bash
-   cp .env.example .env.local
-   # edit .env.local as needed
-   ```
-3. Start the development server:
+
+2. Configure environment variables (see Environment Variables below).
+
+3. Start the dev server:
+
    ```bash
    npm run dev
    ```
-4. Open http://localhost:3000 in your browser.
 
-Scripts (web/)
-- `npm run dev` — start Next.js dev server
-- `npm run build` — production build
-- `npm run start` — start built app
-- `npm run lint` — run ESLint (flat config extends Next + TS; build artifacts are ignored)
-- `npm run type-check` — TypeScript `tsc --noEmit`
-- `npm run format` — Prettier write mode over repo
-- `npm run storybook` — start Storybook at http://localhost:6006
-- `npm run build-storybook` — build static Storybook
-- `npm run test` — run Vitest (node/jsdom environment)
-- `npm run test:unit` — run unit tests in Vitest pool named "unit"
-- `npm run test:ui` — launch Vitest UI
-- `npm run test:ci` — run tests with coverage (V8) suitable for CI
-- `npm run test:sb` — run tests with Storybook config
+4. Visit http://localhost:3000
 
-Entry points
-- App Router entry: `web/src/app/page.mdx`
-- Next.js config: `web/next.config.ts` (with MDX enabled)
-- Tailwind: `web/tailwind.config.ts`, styles in `web/src/app/globals.css` (per `components.json`)
-- Storybook config: `web/.storybook/main.cjs` and `web/.storybook/preview.ts`
-- Vitest config: `web/vitest.config.ts` and `web/vitest.sb.config.ts`
+## Environment Variables
 
-Environment variables
-- Next.js reads `.env`, `.env.local`, `.env.development`, etc. in the `web/` folder.
-- Variables are validated via Zod in `web/src/lib/env.ts`. Import `env` where needed to access typed values.
-- Conventions: variables exposed to the client must be prefixed with `NEXT_PUBLIC_`.
-- Example keys (see `web/.env.example`):
-  - `NEXT_PUBLIC_SITE_URL` — e.g., `https://localhost:3000` (required)
-  - `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` — domain for Plausible analytics (optional until enabled)
-  - `SENTRY_DSN` — Sentry DSN (optional until enabled)
-  - `NODE_ENV` — `development` | `test` | `production` (default: `development`)
+Environment variables are validated in `src/lib/env.ts` using `zod`.
 
-TypeScript configuration
-- Strictness flags enabled as noted above.
-- Path aliases set in `web/tsconfig.json`:
-  ```json
-  {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/lib/*": ["./src/lib/*"]
-    }
-  }
-  ```
+Define variables in a `.env.local` file at the project root (not committed):
 
-Testing
-- Unit tests: Vitest with jsdom and Testing Library
-  - Setup file: `web/vitest.setup.tsx` (mocks Next.js modules and JSDOM gaps)
-  - Run: `cd web && npm run test`
-- UI mode: `npm run test:ui` (Vitest UI)
-- Coverage: `npm run test:ci` (text + lcov via V8)
-- Storybook testing: `npm run test:sb`
-  - Note: Storybook config integrates with Vitest via `@storybook/addon-vitest`.
-  - Uses `web/vitest.sb.config.ts` with setup `web/vitest.sb.setup.tsx`.
-  - Additional Storybook-specific mocks/config: `web/.storybook/vitest.setup.ts`.
+```dotenv
+# Public site URL used for metadata/canonicals
+NEXT_PUBLIC_SITE_URL=https://localhost:3000
 
-Storybook
-- Start with `cd web && npm run storybook` then open http://localhost:6006
-- Stories live under `web/src/**/*.stories.@(ts|tsx|mdx)`
-- Static build: `cd web && npm run build-storybook` (outputs to `web/storybook-static/`).
+# Optional analytics domain (when enabling Plausible)
+# NEXT_PUBLIC_PLAUSIBLE_DOMAIN=marketmind.ai
 
-Project structure (selected)
+# Optional Sentry DSN for error reporting
+# SENTRY_DSN=https://<key>@o<org>.ingest.sentry.io/<project>
+```
+
+Notes:
+- `NODE_ENV` is handled by tooling (no need to set manually).
+- Add more env vars as features expand; update `src/lib/env.ts` schema accordingly.
+
+## Scripts
+
+All available scripts from `package.json`:
+
+- `dev`: Run Next.js dev server
+- `build`: Production build (`.next`)
+- `start`: Start production server (after `build`)
+- `lint`: Run ESLint
+- `type-check`: TypeScript type check (no emit)
+- `format`: Prettier write
+- `storybook`: Start Storybook on port 6006
+- `build-storybook`: Build static Storybook site
+- `test`: Run Vitest (node) once
+- `test:watch`: Run Vitest in watch mode
+- `test:unit`: Run only unit tests (project `unit`)
+- `test:ui`: Run Vitest with UI
+- `test:ci`: Run Vitest with coverage (CI)
+- `test:sb`: Run Vitest against Storybook config
+
+Common workflows:
+
+```bash
+# Lint and type-check
+npm run lint && npm run type-check
+
+# Run unit tests and coverage
+npm run test
+npm run test:ci
+
+# Storybook (components sandbox)
+npm run storybook
+```
+
+## Build and Run (Production)
+
+```bash
+npm run build
+npm run start
+```
+
+The default port is `3000`. Customize with `PORT=xxxx` when supported by your environment (e.g., hosting platform).
+
+## Tests
+
+- Test runner: Vitest (`vitest.config.ts`) with `jsdom` environment.
+- Setup files: `vitest.setup.tsx` (Testing Library, globals), plus optional Storybook testing config `vitest.sb.config.ts`.
+- Example tests live under `src/components/__tests__` and `src/components/ui/*.test.tsx`.
+
+Run commands:
+
+```bash
+npm run test           # one-off
+npm run test:watch     # watch mode
+npm run test:ui        # Vitest UI
+npm run test:ci        # coverage
+```
+
+Browser/E2E testing:
+- `playwright` is present in devDependencies but no test suite is configured yet. TODO: add Playwright tests and document commands.
+
+## Storybook
+
+Start Storybook locally:
+
+```bash
+npm run storybook
+```
+
+Build static Storybook:
+
+```bash
+npm run build-storybook
+```
+
+## Project Structure
+
+High-level layout (selected paths):
+
 ```
 .
-├─ README.md                # This file
-├─ web/                     # Main Next.js app package
-│  ├─ package.json          # Scripts and dependencies
-│  ├─ next.config.ts        # Next.js config with MDX
-│  ├─ src/
-│  │  └─ app/               # App Router pages (MDX + TSX; docs under app/docs)
-│  │     └─ docs/           # Documentation routes (primarily MDX)
-│  ├─ .storybook/           # Storybook configuration
-│  ├─ vitest.config.ts      # Vitest config
-│  ├─ vitest.sb.config.ts   # Vitest config for Storybook
-│  └─ vitest.setup.tsx      # Test environment setup
-└─ tools/, rtd/, public/, etc.
+├─ src/
+│  ├─ app/                  # Next.js App Router (routes, layouts, API)
+│  │  ├─ layout.tsx         # Root layout
+│  │  ├─ page.tsx           # Home page
+│  │  ├─ api/positions/     # Example API route
+│  │  └─ docs/              # MDX/TSX docs pages
+│  ├─ components/           # UI components and tests
+│  ├─ lib/                  # Utilities (e.g., env validation)
+│  └─ stories/              # Storybook stories and assets
+├─ public/                  # Static assets
+├─ next.config.ts           # Next.js config + security headers + MDX
+├─ tailwind.config.ts       # TailwindCSS config
+├─ postcss.config.mjs       # PostCSS config
+├─ eslint.config.mjs        # ESLint config
+├─ tsconfig.json            # TypeScript config
+├─ vitest.config.ts         # Vitest (node/jsdom) config
+├─ vitest.sb.config.ts      # Vitest config for Storybook
+├─ vitest.setup.tsx         # Vitest setup
+├─ components.json          # Shadcn/tailwind glue (css path)
+├─ package.json             # Scripts and dependencies
+└─ CHANGELOG.md             # Project change history
 ```
 
-Setup notes and caveats
-- Install and run commands from `web/`; the runnable app is under `web/`.
-- Next 16 may warn about multiple lockfiles when both root and `web/` have lockfiles; this is harmless but you can remove the unused one or scope Turbopack root.
-- Some test setup files under `web/.storybook/` are for Storybook-specific runs.
+Entry points:
+- App Router root: `src/app/layout.tsx`, `src/app/page.tsx`
+- API routes: under `src/app/api/*/route.ts`
+- Docs: `src/app/docs/*` (MDX supported)
 
-Deployment
-- Standard Next.js deployment applies for the `web/` package (e.g., Vercel, self-hosted Node).
-- Build with `cd web && npm run build`; start with `npm run start`.
-- TODO: Provide deployment target(s), environment variables, and secrets for each environment.
+## Linting & Formatting
 
-Warnings resolved (Phase 1 hygiene)
-- ESLint ignore config: migrated to flat-config `ignores` in `eslint.config.mjs`. The deprecated `.eslintignore` file has been removed; ESLint v9 deprecation notice is gone.
-- Vitest JSX attribute warning: the Storybook demo style block in `src/stories/Button.tsx` is not rendered during tests (only outside `NODE_ENV === 'test'`), so the "Received true for a non-boolean attribute jsx" warning is eliminated.
-- Turbopack workspace root: configured `turbopack.root` in `web/next.config.ts` to avoid the “inferred workspace root” warning when multiple lockfiles exist.
+```bash
+npm run lint
+npm run format
+npm run type-check
+```
 
-Verification checklist
-- `cd web && npm run lint` — ESLint passes (may emit warnings).
-- `cd web && npm run type-check` — ESLint + TypeScript type check passes.
-- `cd web && npm run test` — Vitest sample tests pass.
-- `cd web && npm run build` — Next.js production build succeeds.
+## Deployment
 
-License
-- TODO: Add project license (e.g., MIT) and copyright notice.
+- Next.js production server via `npm run start` after `npm run build`.
+- Suitable for hosting on Vercel, Node-based hosts, or containers. See official docs:
+  - Next.js deployment: https://nextjs.org/docs/app/building-your-application/deploying
 
-References
-- Next.js docs: https://nextjs.org/docs
-- Storybook docs: https://storybook.js.org/docs
-- Vitest docs: https://vitest.dev
+Headers & Security:
+- `next.config.ts` sets common security headers (HSTS, X-Frame-Options, CSP skeleton).
+- TODO: tighten CSP and `connect-src` as external services are added (analytics, RPC endpoints, etc.).
+
+## License
+
+TODO: Add a license file (e.g., `LICENSE`) and specify the chosen license here.
+
+## Learn More
+
+- Next.js Documentation: https://nextjs.org/docs
+- Learn Next.js Tutorial: https://nextjs.org/learn
+- Storybook: https://storybook.js.org/docs
+- Vitest: https://vitest.dev/guide/
