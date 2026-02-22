@@ -106,101 +106,90 @@ const generateData = () => {
 
 const metrics = [
   {
-    label: "GPU Inference p95",
-    value: "≈3 ms",
-    detail: "C++ ORT + TensorRT (snapshot)",
-    icon: Zap,
+    label: "Phase 0 status",
+    value: "7/9",
+    detail: "Validation infrastructure milestones complete (Feb 2026)",
+    icon: Shield,
     color: "text-emerald-400",
   },
   {
-    label: "Throughput",
-    value: "1k+/s",
-    detail: "Inferences per GPU (target)",
-    icon: Cpu,
+    label: "Tests passing",
+    value: "150+",
+    detail: "Unit + integration + property-based suites",
+    icon: Check,
     color: "text-blue-400",
   },
   {
-    label: "Meta-Portfolio Lift",
-    value: "73.2%",
-    detail: "Out-of-sample example with meta-learner vs baseline basket",
-    icon: TrendingUp,
+    label: "Leakage invariants",
+    value: "20",
+    detail: "Hypothesis property tests for time-series leakage",
+    icon: Zap,
     color: "text-purple-400",
   },
 ];
-
 const features = [
   {
-    icon: TrendingUp,
-    title: "Meta-Learning Strategy Orchestrator",
+    icon: Database,
+    title: "Auditable Run Bundles",
     description:
-      "Learns which strategies and models to deploy per market regime, using live performance and risk signals to rebalance your portfolio automatically.",
-  },
-  {
-    icon: Zap,
-    title: "Ultra-Low Latency Runtime",
-    description:
-      "C++20 + ONNX Runtime + TensorRT for sub-millisecond inference on live order flow.",
-  },
-  {
-    icon: BarChart3,
-    title: "Hybrid ML Pipeline",
-    description:
-      "Meta-learning layer over Transformer, sequence, and classical models, exported to ONNX and optimized for live regime-aware selection.",
-  },
-  {
-    icon: Code,
-    title: "Registry-Driven Pipelines",
-    description:
-      "Declarative CPU→GPU preprocessing with plugin registries for indicators, NLP, and explainability.",
+      "Single-command pipeline produces versioned artifacts (plan, env fingerprint, dataset manifest, splits, and gate results) for reproducible research runs.",
   },
   {
     icon: Shield,
-    title: "Enterprise-Ready Controls",
+    title: "Gate-First Validation",
     description:
-      "Risk, caching, and observability contracts baked into the engine for safe execution.",
+      "Fail-closed validation (CLI + runner) enforces schema integrity, determinism rules, and leakage safeguards before any result is considered credible.",
+  },
+  {
+    icon: Code,
+    title: "Time-Series Native Splits",
+    description:
+      "Walk-forward + purge/embargo validation to prevent look-ahead and overlap leakage in financial time-series evaluation.",
   },
   {
     icon: Cpu,
-    title: "Multi-Tier Caching",
+    title: "Artifact Registry (CAS)",
     description:
-      "L1–L4 caching hierarchy with TinyLFU admission to keep hot features and models warm.",
+      "Content-addressable storage with deduplication and run state machine so only COMPLETE runs are queryable and comparable.",
+  },
+  {
+    icon: BarChart3,
+    title: "Desktop Dashboard (Phase 0)",
+    description:
+      "JavaFX UI drives the pipeline end-to-end: run → backtest → gates → results, with a clear PASS/FAIL validation surface.",
   },
   {
     icon: TrendingUp,
-    title: "Live Analytics & Telemetry",
+    title: "Roadmap: Live + ML + Low Latency",
     description:
-      "Prometheus metrics, traces, and dashboards for latency, drift, and PnL in a single view.",
+      "Real-time feeds, ML training/ONNX export, and C++/GPU inference are planned phases—not shipped in Phase 0.",
   },
 ];
 
 const benchmarkData = [
-  { name: "MarketMind", p50: 0.8, p95: 3.0, p99: 10 },
-  { name: "Baseline Python", p50: 45, p95: 120, p99: 250 },
-  { name: "Cloud API", p50: 150, p95: 400, p99: 800 },
+  // Illustrative targets only — replace with your measured perf snapshots.
+  { name: "MarketMind (target)", p50: 2.0, p95: 6.0, p99: 12.0 },
+  { name: "Baseline Python (typical)", p50: 45, p95: 120, p99: 250 },
+  { name: "Cloud API (typical)", p50: 150, p95: 400, p99: 800 },
 ];
 
 const architectureLayers = [
   { name: "Desktop UI", tech: "JavaFX + Spring Boot", color: "#3b82f6" },
   { name: "Web Interface", tech: "Next.js 16 + React", color: "#10b981" },
-  { name: "Python ML", tech: "PyTorch + ONNX Export", color: "#8b5cf6" },
-  { name: "C++ Runtime", tech: "ORT + TensorRT Inference", color: "#f59e0b" },
-  { name: "Cache Layer", tech: "Redis + TinyLFU L1-L4", color: "#ef4444" },
-  { name: "Telemetry", tech: "Prometheus + OpenTelemetry", color: "#06b6d4" },
+  { name: "ML pipeline (planned)", tech: "PyTorch + ONNX export", color: "#8b5cf6" },
+  { name: "C++ inference (planned)", tech: "ONNX Runtime + TensorRT", color: "#f59e0b" },
+  { name: "Cache Layer (planned)", tech: "Redis + L1–L4 tiers", color: "#ef4444" },
+  { name: "Telemetry (planned)", tech: "Prometheus + OpenTelemetry", color: "#06b6d4" },
 ];
 
-const codeExample = `// Strategy registration with MarketMind
-@Strategy(name = "momentum_ensemble")
-class MomentumStrategy {
-  @Cache(ttl = "5m", tier = L2)
-  async predict(features: Features) {
-    // GPU inference in <1ms
-    const signal = await this.model.infer(features);
-    
-    // Risk checks + position sizing
-    return this.riskEngine.size(signal);
-  }
-}`;
+const codeExample = `# Phase 0: produce an auditable run bundle + validate gates
+python -m srcPy.bridge.run_pipeline tests/fixtures/sample_spy.csv --fast-sma 5 --slow-sma 10
 
+# Output: run_bundle_v1/{timestamp}_{hash}/ (plan/env/dataset/splits/gate_result)
+python -m srcPy.cli.gate run_bundle_v1/{timestamp}_{hash}/
+
+# Fail-closed validation: exit codes 0=PASS, 1=FAIL, 2=invalid input, 3=internal error
+`;
 // REMOVE this line:
 // const chartData = generateData();
 
@@ -256,7 +245,7 @@ export default function MarketMindHero() {
           >
             <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
             <span className="text-sm text-emerald-400 font-medium">
-              Meta-learning quant runtime · C++ · GPU · TensorRT
+              Audit-first backtesting · gates · reproducibility
             </span>
           </div>
 
@@ -268,9 +257,9 @@ export default function MarketMindHero() {
                   mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                 }`}
               >
-                Meta-learning control plane
+                Validation-first control plane
                 <span className="block bg-gradient-to-r from-emerald-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  on an ultra-low-latency C++/GPU runtime
+                  with a C++/GPU runtime on the roadmap
                 </span>
               </h1>
 
@@ -279,9 +268,7 @@ export default function MarketMindHero() {
                   mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                 }`}
               >
-                MarketMind continuously adapts strategies across market regimes while a
-                hard real-time C++ execution engine and GPU inference layer keep drift,
-                slippage, and capacity under control.
+                Today, MarketMind ships a Phase 0 vertical slice (UI → Python → backtest → gates → results) plus an auditable run-bundle pipeline for reproducible research.
               </p>
 
               <p
@@ -289,9 +276,8 @@ export default function MarketMindHero() {
                   mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                 }`}
               >
-                Built for quant funds, HFT desks, and advanced retail algos that need a
-                meta-learning layer on top of an engine that actually hits strict latency
-                SLOs.
+                Current status: Phase 0 validation infrastructure (7/9 milestones complete). Live data,
+                ML training, and low-latency execution are roadmap phases—not production claims.
               </p>
 
               <div
@@ -357,17 +343,17 @@ export default function MarketMindHero() {
                 <div className="flex items-center justify-between mb-6">
                   <div>
                     <div className="text-sm text-slate-400 mb-1">
-                      Simulated Strategy PnL
+                      Backtest Metrics (UI placeholder)
                     </div>
-                    <div className="text-2xl font-bold text-emerald-400">+24.7%</div>
+                    <div className="text-2xl font-bold text-emerald-400">—</div>
                     <div className="text-xs text-slate-500">
-                      Example equity curve (demo data)
+                      Synthetic demo values — replace with validated results.
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-1 text-emerald-400">
                     <div className="flex items-center gap-2">
                       <TrendingUp className="w-5 h-5" />
-                      <span className="text-sm font-medium">Real-time View</span>
+                      <span className="text-sm font-medium">Demo View</span>
                     </div>
                   </div>
                 </div>
@@ -396,15 +382,15 @@ export default function MarketMindHero() {
                 <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/10">
                   <div>
                     <div className="text-xs text-slate-400 mb-1">Win Rate</div>
-                    <div className="text-lg font-semibold">73.2%</div>
+                    <div className="text-lg font-semibold">—</div>
                   </div>
                   <div>
                     <div className="text-xs text-slate-400 mb-1">Sharpe</div>
-                    <div className="text-lg font-semibold">2.84</div>
+                    <div className="text-lg font-semibold">—</div>
                   </div>
                   <div>
                     <div className="text-xs text-slate-400 mb-1">Max DD</div>
-                    <div className="text-lg font-semibold">-4.1%</div>
+                    <div className="text-lg font-semibold">—</div>
                   </div>
                 </div>
               </div>
@@ -430,13 +416,13 @@ export default function MarketMindHero() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Card className="border-border/60 bg-slate-900/60 p-4">
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-              Latency
+              Validation
             </p>
             <p className="mt-2 text-lg font-semibold text-slate-50">
-              p95 ≈ 3 ms
+              PASS/FAIL gates
             </p>
             <p className="mt-1 text-xs text-slate-400">
-              Snapshot on GPU-accelerated inference; replace with your measured numbers.
+              Phase 0 ships auditable bundles + fail-closed validation.
             </p>
           </Card>
           <Card className="border-border/60 bg-slate-900/60 p-4">
@@ -444,7 +430,7 @@ export default function MarketMindHero() {
               Meta-learning
             </p>
             <p className="mt-2 text-sm text-slate-50">
-              Continual regime adaptation with live performance + risk feedback.
+              Roadmap: meta-learning combiner with walk-forward validation and portfolio feedback.
             </p>
           </Card>
           <Card className="border-border/60 bg-slate-900/60 p-4">
@@ -452,7 +438,7 @@ export default function MarketMindHero() {
               Risk controls
             </p>
             <p className="mt-2 text-sm text-slate-50">
-              Kill switches, per-strategy and portfolio limits, circuit breakers.
+              Roadmap: kill switch, per-strategy limits, and circuit breakers (Phase III).
             </p>
           </Card>
           <Card className="border-border/60 bg-slate-900/60 p-4">
@@ -460,7 +446,7 @@ export default function MarketMindHero() {
               Runtime stack
             </p>
             <p className="mt-2 text-sm text-slate-50">
-              C++ core · Python orchestration · GPU inference · observability-first.
+              Python orchestration today · C++/GPU inference planned · audit/observability-first.
             </p>
           </Card>
         </div>
@@ -470,10 +456,10 @@ export default function MarketMindHero() {
       <section className="relative max-w-7xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Real Performance, Real Numbers
+            Performance Targets (Illustrative)
           </h2>
           <p className="text-lg sm:text-xl text-slate-400">
-            Measured inference latency across production-like workloads
+            Illustrative targets for future perf runs — replace with measured telemetry snapshots.
           </p>
         </div>
 
@@ -481,7 +467,7 @@ export default function MarketMindHero() {
           <div className="bg-slate-900/30 backdrop-blur-sm border border-white/10 rounded-xl p-8">
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-3">
               <Gauge className="w-6 h-6 text-emerald-400" />
-              Latency Comparison (ms)
+              Latency Targets (ms)
             </h3>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={benchmarkData}>
@@ -500,15 +486,15 @@ export default function MarketMindHero() {
             <div className="mt-6 grid grid-cols-3 gap-4">
               <div className="text-center">
                 <div className="text-xs text-slate-400 mb-1">p50</div>
-                <div className="text-sm font-semibold text-emerald-400">0.8ms</div>
+                <div className="text-sm font-semibold text-emerald-400">2.0ms</div>
               </div>
               <div className="text-center">
                 <div className="text-xs text-slate-400 mb-1">p95</div>
-                <div className="text-sm font-semibold text-emerald-400">3.0ms</div>
+                <div className="text-sm font-semibold text-emerald-400">6.0ms</div>
               </div>
               <div className="text-center">
                 <div className="text-xs text-slate-400 mb-1">p99</div>
-                <div className="text-sm font-semibold text-emerald-400">10ms</div>
+                <div className="text-sm font-semibold text-emerald-400">12ms</div>
               </div>
             </div>
           </div>
@@ -523,31 +509,31 @@ export default function MarketMindHero() {
                 <li className="flex items-start gap-3">
                   <ArrowRight className="w-4 h-4 text-emerald-400 mt-1 flex-shrink-0" />
                   <span>
-                    <strong>50–150x faster</strong> than Python-only solutions
+                    <strong>Designed for low-latency</strong> vs Python-only baselines (workload-dependent)
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <ArrowRight className="w-4 h-4 text-emerald-400 mt-1 flex-shrink-0" />
                   <span>
-                    <strong>Sub-10ms p99</strong> enables high-frequency strategies
+                    <strong>Target p99</strong> in the ~10–15ms range for GPU inference (Phase III)
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <ArrowRight className="w-4 h-4 text-emerald-400 mt-1 flex-shrink-0" />
                   <span>
-                    <strong>GPU acceleration</strong> with TensorRT optimization
+                    <strong>Roadmap</strong>: GPU acceleration via ONNX Runtime + TensorRT
                   </span>
                 </li>
               </ul>
             </div>
 
             <div className="bg-slate-900/30 backdrop-blur-sm border border-white/10 rounded-xl p-6">
-              <h4 className="font-semibold mb-3">Test Configuration</h4>
+              <h4 className="font-semibold mb-3">Example Benchmark Setup</h4>
               <div className="text-sm text-slate-400 space-y-1">
-                <div>• RTX 4090 GPU</div>
-                <div>• Batch size: 32</div>
-                <div>• Model: Hybrid Transformer (ONNX → TensorRT)</div>
-                <div>• Measured over 10k inferences</div>
+                <div>• Example GPU: RTX 4090-class</div>
+                <div>• Example batch size: 32</div>
+                <div>• Example model: ONNX → TensorRT path</div>
+                <div>• Run size: 10k inferences (when benchmarked)</div>
               </div>
             </div>
           </div>
@@ -571,7 +557,7 @@ export default function MarketMindHero() {
             Multi-Language Architecture
           </h2>
           <p className="text-lg sm:text-xl text-slate-400">
-            Meta-learning control plane over a low-latency C++/GPU runtime and multi-language
+            Validation-first control plane over a low-latency C++/GPU runtime and multi-language
             clients.
           </p>
         </div>
@@ -612,7 +598,7 @@ export default function MarketMindHero() {
             </pre>
             <div className="mt-6 flex items-center gap-2 text-sm text-slate-400">
               <Database className="w-4 h-4" />
-              <span>Auto-cached, GPU-accelerated, risk-controlled</span>
+              <span>Auditable, validation-gated, reproducible</span>
             </div>
           </div>
         </div>
@@ -632,11 +618,11 @@ export default function MarketMindHero() {
       <section className="max-w-7xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Built for Performance
+            Built for Credibility
           </h2>
           <p className="text-lg sm:text-xl text-slate-400">
-            Enterprise-grade infrastructure designed for the demands of modern
-            quantitative trading.
+            Architecture designed for auditability now, with performance work planned
+            for later phases.
           </p>
         </div>
 
@@ -668,9 +654,8 @@ export default function MarketMindHero() {
               Ready to Wire This Into Your Stack?
             </h2>
             <p className="text-lg sm:text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Connect the C++ inference service, Python pipelines, and Java desktop
-              to your existing infrastructure with clear contracts for training,
-              caching, and observability.
+              Phase 0 provides the contracts and validation surface (bundles + gates). The live
+              C++ inference service, streaming data, and production telemetry are roadmap deliverables.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a
