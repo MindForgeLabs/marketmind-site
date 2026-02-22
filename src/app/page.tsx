@@ -102,7 +102,7 @@ const generateData = () => {
   return data;
 };
 
-const chartData = generateData();
+// const chartData = generateData();
 
 const metrics = [
   {
@@ -201,16 +201,22 @@ class MomentumStrategy {
   }
 }`;
 
+// REMOVE this line:
+// const chartData = generateData();
+
 export default function MarketMindHero() {
   const [mounted, setMounted] = useState(false);
+  const [chartData, setChartData] = useState<{ time: number; value: number }[]>([]);
   const [activeMetric, setActiveMetric] = useState(0);
   const [autoRotate, setAutoRotate] = useState(true);
   const [activeLayer, setActiveLayer] = useState(3);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
+    setChartData(generateData()); // ✅ client-only, no hydration mismatch
+  }, []);
 
+  useEffect(() => {
     if (!autoRotate) return;
 
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
