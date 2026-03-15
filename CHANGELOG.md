@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## Unreleased
 
+### Content / Overclaim removal
+
+- **Metadata and Footer:** Removed "ultra-low-latency" and "Hybrid ML + HFT Runtime"; site now describes MarketMind as a validation-first R&D platform.
+- **Hero:** Strict sentence order (what product is today → what it helps users do today → roadmap); Phase 0 status updated to 9/9; features page restructured with current platform dominant, roadmap secondary.
+- **Latency/benchmark:** Numeric cards either removed or every widget title prefixed with "Illustrative target"; no production-telemetry implication. Performance page has top callout (Current scope / Target architecture).
+- **ML, GPU, C++, low-latency, streaming, live data, broker, meta-learning:** Explicitly labeled planned/roadmap (Phase II/III) across all pages; banned wording list applied.
+- **Key pages (homepage, features, performance, about, docs architecture, docs ML pipeline, docs C++ runtime):** Visible "Current vs Roadmap" pattern (section headers, badges, or top callout); docs C++ and ML pipeline have top-of-page warning callouts.
+- **New artifacts:** `docs/site-claim-audit.md` (claim-by-claim audit table); `docs/website-claims-policy.md` (editorial policy to prevent regression).
+- **Rationale:** Align all messaging with MarketMind repo docs (README, ImplementationPlan, TechnicalRoadmap, WhitePaper, MetaLearningCore); claim classification (CURRENT/ROADMAP/VISION/REMOVE) and metadata/CTA audit applied.
+
 ### Added
 
 - New landing page sections for analytics product positioning
@@ -58,6 +68,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Added Vitest coverage for MDX utility functions
 - Improved App Router route organization
 - Refined content authoring workflow
+
+---
+
+## [0.8.0] - 2026-03-15
+
+Site information architecture rationalization: public site reflects a validation-first platform with minimal coherent navigation; technical depth in docs; internal/experimental surfaces hidden from discovery.
+
+### Added
+
+- **Header:** Get Started button and link now point to `/docs/quickstart` as the canonical onboarding path.
+- **Footer:** "Docs & resources" section with Documentation, API Reference, Guides, Architecture (`/docs/architecture`), Performance. "Product" section (Features, Integrations). Pricing omitted from footer (page is minimal / on request).
+- **Docs sidebar:** Full 10-item nav—Quickstart, Architecture, API, Strategies, Risk, Installation, Telemetry, Caching, ML Pipeline (planned), C++ Runtime (planned)—all links under `/docs/*`.
+- **Docs landing:** `content/docs/index.mdx` order and labels mirror the docs sidebar; validation-first intro; "Where to start" points to Quickstart and Architecture.
+- **Marketing quickstart:** Top callout and primary CTA "Go to full Quickstart in Docs" → `/docs/quickstart`; page reframed as summary with handoff to docs.
+- **Noindex:** `(dashboard)/layout.tsx` and `(labs)/layout.tsx` export `robots: { index: false, follow: true }` for `/dashboard`, `/demo`, `/search`.
+- **Deliverable:** `docs/site-ia-rationalization.md` with final public sitemap, docs sitemap, hidden routes, demoted pages, canonical Get Started, and rationale.
+
+### Changed
+
+- **Primary navigation:** Header reduced to Home, Features, Docs, About, Get Started. Removed from top nav: Guides, Pricing.
+- **Footer:** "Platform" renamed to "Product"; "Resources" renamed to "Docs & resources"; Architecture link set to `/docs/architecture` (was `/architecture`). Pricing removed from footer discovery.
+- **Homepage CTA:** "Schedule Deep-Dive Demo" link changed from `/demo` to `/contact` so Labs are not discoverable from public CTAs.
+- **CTA rule:** No homepage, header, or hero CTA links to `/dashboard`, `/demo`, or `/search`; internal surfaces remain routable but undiscoverable and noindexed.
+
+### Notes
+
+- No routes or pages deleted. Guides, Integrations, Performance, Contact, Security, Privacy, Terms remain as routes; only their exposure (header vs footer) and CTA targets were updated. Dashboard and Labs remain routable for direct or internal use.
 
 ---
 

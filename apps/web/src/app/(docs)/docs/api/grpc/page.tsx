@@ -5,11 +5,10 @@ export default function GrpcAPIPage() {
         <h1 className="text-3xl font-bold mb-4">gRPC API Reference</h1>
         <p className="text-slate-300 mb-4">
           High-performance RPC interface for low-latency integrations with exchange connectors, risk systems,
-          and downstream services.
+          and downstream services. <strong className="text-amber-400/90">Planned (Phase II/III).</strong> gRPC services are not yet running; proto/stubs may exist but no inference or streaming service is shipped.
         </p>
         <p className="text-slate-400">
-          Detailed protobuf definitions and examples will be published in a future release. Internally, MarketMind
-          uses gRPC for strategy control, health checking, and streaming model inference.
+          Detailed protobuf definitions and examples will be published in a future release.
         </p>
       </div>
     </main>

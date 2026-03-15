@@ -20,15 +20,15 @@ export default function StrategiesPage() {
               </p>
             </div>
             <div className="border-l-4 border-purple-500 pl-6">
-              <h3 className="text-xl font-semibold mb-2">3. Paper Trading</h3>
+              <h3 className="text-xl font-semibold mb-2">3. Paper Trading <span className="text-sm font-normal text-amber-400/90">(Planned, Phase III)</span></h3>
               <p className="text-slate-300">
-                Execute strategies against live market data without sending real orders.
+                Target: execute strategies against live market data without sending real orders. Not shipped yet.
               </p>
             </div>
             <div className="border-l-4 border-orange-500 pl-6">
-              <h3 className="text-xl font-semibold mb-2">4. Production</h3>
+              <h3 className="text-xl font-semibold mb-2">4. Production <span className="text-sm font-normal text-amber-400/90">(Planned, Phase III)</span></h3>
               <p className="text-slate-300">
-                Deploy to the C++ runtime with full risk controls and observability.
+                Target: deploy to the C++ runtime with full risk controls and observability. C++ runtime and live execution are not shipped yet.
               </p>
             </div>
           </div>
@@ -58,10 +58,10 @@ class HybridStrategy(BaseStrategy):
         <section>
           <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
           <ul className="space-y-2 text-slate-300">
-            <li>• Always implement position limits and stop-losses.</li>
+            <li>• Always implement position limits and stop-losses (design target; risk controls are Phase III).</li>
             <li>• Use walk-forward optimization to avoid overfitting.</li>
-            <li>• Monitor live performance and risk metrics in real time.</li>
-            <li>• Run in paper mode for at least 1–2 weeks before going live.</li>
+            <li>• Today: monitor backtest and validation metrics. Live performance monitoring is planned (Phase III).</li>
+            <li>• Paper mode and live execution are planned (Phase III); not available yet.</li>
             <li>• Prefer simple, interpretable strategies over unnecessary complexity.</li>
           </ul>
         </section>

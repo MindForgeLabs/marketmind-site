@@ -26,35 +26,53 @@ export default function DocsLayout({
             <nav aria-label="Documentation">
               <ul className="space-y-1">
                 <li>
-                  <Link
-                    href="/docs/quickstart"
-                    className="block rounded px-2 py-1 hover:bg-slate-800 hover:text-slate-100"
-                  >
-                    Getting started
+                  <Link href="/docs/quickstart" className="block rounded px-2 py-1 hover:bg-slate-800 hover:text-slate-100">
+                    Quickstart
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/architecture"
-                    className="block rounded px-2 py-1 hover:bg-slate-800 hover:text-slate-100"
-                  >
+                  <Link href="/docs/architecture" className="block rounded px-2 py-1 hover:bg-slate-800 hover:text-slate-100">
                     Architecture
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/performance"
-                    className="block rounded px-2 py-1 hover:bg-slate-800 hover:text-slate-100"
-                  >
-                    Performance
+                  <Link href="/docs/api" className="block rounded px-2 py-1 hover:bg-slate-800 hover:text-slate-100">
+                    API
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/docs/telemetry"
-                    className="block rounded px-2 py-1 hover:bg-slate-800 hover:text-slate-100"
-                  >
-                    Telemetry &amp; metrics
+                  <Link href="/docs/strategies" className="block rounded px-2 py-1 hover:bg-slate-800 hover:text-slate-100">
+                    Strategies
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs/risk" className="block rounded px-2 py-1 hover:bg-slate-800 hover:text-slate-100">
+                    Risk
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs/installation" className="block rounded px-2 py-1 hover:bg-slate-800 hover:text-slate-100">
+                    Installation
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs/telemetry" className="block rounded px-2 py-1 hover:bg-slate-800 hover:text-slate-100">
+                    Telemetry
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs/caching" className="block rounded px-2 py-1 hover:bg-slate-800 hover:text-slate-100">
+                    Caching
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs/ml-pipeline" className="block rounded px-2 py-1 hover:bg-slate-800 hover:text-slate-100">
+                    ML Pipeline (planned)
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs/cpp-runtime" className="block rounded px-2 py-1 hover:bg-slate-800 hover:text-slate-100">
+                    C++ Runtime (planned)
                   </Link>
                 </li>
               </ul>

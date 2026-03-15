@@ -8,12 +8,12 @@ export default function InstallationPage() {
           <h2 className="text-2xl font-semibold mb-4">System Requirements</h2>
           <ul className="space-y-2 text-slate-300">
             <li>• Python 3.12+</li>
-            <li>• C++20 compiler (GCC 11+, Clang 14+, or MSVC 2022+)</li>
-            <li>• CUDA 12.x + cuDNN 9.x (for GPU acceleration)</li>
+            <li>• C++20 compiler (GCC 11+, Clang 14+, or MSVC 2022+) — optional for current platform; required for future Phase III C++ runtime</li>
+            <li>• CUDA 12.x + cuDNN 9.x (optional, for future Phase III GPU inference — not required for current validation/backtest)</li>
             <li>• Java 21+ (for desktop UI)</li>
-            <li>• Redis 7.x (for caching)</li>
+            <li>• Redis 7.x (for caching; roadmap for full L1–L4 tiering)</li>
             <li>• 16GB+ RAM (32GB recommended)</li>
-            <li>• NVIDIA GPU with 8GB+ VRAM (RTX 3070 or better)</li>
+            <li>• NVIDIA GPU with 8GB+ VRAM (optional; Phase III only)</li>
           </ul>
         </section>
 

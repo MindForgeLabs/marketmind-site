@@ -7,8 +7,6 @@ const navigation = [
     { name: "Home", href: "/" },
     { name: "Features", href: "/features" },
     { name: "Docs", href: "/docs" },
-    { name: "Guides", href: "/guides" },
-    { name: "Pricing", href: "/pricing" },
     { name: "About", href: "/about" },
 ];
 
@@ -39,7 +37,7 @@ export default function Navigation() {
                             </Link>
                         ))}
                         <Link
-                            href="/contact"
+                            href="/docs/quickstart"
                             className="px-6 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-lg font-semibold hover:from-emerald-600 hover:to-emerald-700 transition"
                         >
                             Get Started
@@ -77,7 +75,7 @@ export default function Navigation() {
                                 </Link>
                             ))}
                             <Link
-                                href="/contact"
+                                href="/docs/quickstart"
                                 className="px-6 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-lg font-semibold hover:from-emerald-600 hover:to-emerald-700 transition text-center"
                                 onClick={() => setMobileMenuOpen(false)}
                             >

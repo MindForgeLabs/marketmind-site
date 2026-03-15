@@ -54,7 +54,7 @@ This README documents the stack, requirements, commands, environment variables, 
 
 Environment variables are validated in `apps/web/src/lib/env.ts` using `zod`.
 
-Define variables in a `.env.local` file at the project root (not committed):
+Define variables in a `.env.local` file in `apps/web/` (Next.js loads from the app directory; not committed):
 
 ```dotenv
 # Public site URL used for metadata/canonicals
@@ -197,7 +197,7 @@ npm run type-check
   - Next.js deployment: https://nextjs.org/docs/app/building-your-application/deploying
 
 Headers & Security:
-- `next.config.ts` sets common security headers (HSTS, X-Frame-Options, CSP skeleton).
+- `apps/web/next.config.ts` sets common security headers (HSTS, X-Frame-Options, CSP skeleton).
 - TODO: tighten CSP and `connect-src` as external services are added (analytics, RPC endpoints, etc.).
 
 ## License

@@ -7,17 +7,17 @@ export default function DesktopPage() {
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">JavaFX Application</h2>
           <p className="text-slate-300 mb-4">
-            The desktop dashboard provides a rich, low-latency interface for live trading operations.
+            The desktop dashboard provides an interface for running backtests, viewing gate results, and inspecting run bundles. No live trading yet.
           </p>
           <div className="bg-slate-900/50 border border-white/10 rounded-lg p-6">
-            <h3 className="text-lg font-semibold mb-4">Key Features</h3>
+            <h3 className="text-lg font-semibold mb-4">Key Features (current)</h3>
             <ul className="space-y-2 text-slate-300">
-              <li>• Live PnL and exposure tracking.</li>
-              <li>• Strategy health and status indicators.</li>
-              <li>• Real-time positions and orders view.</li>
-              <li>• System resource and latency monitoring.</li>
-              <li>• Manual overrides and kill-switch controls.</li>
+              <li>• Backtest controls and results display (PASS/FAIL, metrics).</li>
+              <li>• Run bundle pipeline drive (UI → Python → backtest → gates).</li>
+              <li>• Validation status and artifact inspection.</li>
+              <li>• System resource monitoring.</li>
             </ul>
+            <p className="mt-4 text-sm text-slate-500">Planned (Phase III): Live PnL, real-time positions, kill-switch controls.</p>
           </div>
         </section>
 

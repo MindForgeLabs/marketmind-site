@@ -2,6 +2,15 @@ export default function CppRuntimePage() {
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <div className="max-w-4xl mx-auto px-6 py-16">
+        <div className="mb-8 rounded-lg border border-amber-500/30 bg-amber-500/5 p-4" role="status">
+          <p className="text-sm font-semibold text-amber-400">
+            Planned (Phase III): This page describes target runtime architecture, not currently shipped functionality.
+          </p>
+          <p className="mt-2 text-sm text-slate-400">
+            The C++ inference runtime is not yet implemented; JNI interface exists, no native library.
+          </p>
+        </div>
+
         <h1 className="text-3xl font-bold mb-8">C++ Inference Runtime</h1>
 
         <section className="mb-12">

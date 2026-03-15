@@ -106,8 +106,8 @@ const generateData = () => {
 const metrics = [
   {
     label: "Phase 0 status",
-    value: "7/9",
-    detail: "Validation infrastructure milestones complete (Feb 2026)",
+    value: "9/9",
+    detail: "Phase 0 complete; Phase I in progress (I-B/C/D delivered)",
     icon: Shield,
     color: "text-emerald-400",
   },
@@ -252,31 +252,27 @@ export default function MarketMindHero() {
             <div>
               <h1
                 id="hero-heading"
-                className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight transition-all duration-1000 ${
+                className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 leading-tight transition-all duration-1000 ${
                   mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                 }`}
               >
-                Validation-first control plane
-                <span className="block bg-gradient-to-r from-emerald-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  with a C++/GPU runtime on the roadmap
-                </span>
+                MarketMind is a validation-first algorithmic trading R&D platform.
               </h1>
 
               <p
-                className={`text-lg sm:text-xl text-slate-300 mb-4 leading-relaxed transition-all duration-1000 delay-200 ${
+                className={`text-lg sm:text-xl text-slate-300 mb-3 leading-relaxed transition-all duration-1000 delay-200 ${
                   mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                 }`}
               >
-                Today, MarketMind ships a Phase 0 vertical slice (UI → Python → backtest → gates → results) plus an auditable run-bundle pipeline for reproducible research.
+                It delivers governed backtesting, auditable run bundles, and gate validation so you can develop and evaluate strategies without leakage or unvalidated promotion.
               </p>
 
               <p
-                className={`text-sm text-slate-400 mb-8 transition-all duration-1000 delay-250 ${
+                className={`text-base text-slate-400 mb-4 transition-all duration-1000 delay-250 ${
                   mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                 }`}
               >
-                Current status: Phase 0 validation infrastructure (7/9 milestones complete). Live data,
-                ML training, and low-latency execution are roadmap phases—not production claims.
+                Today, MarketMind ships a Phase 0 vertical slice (UI → Python → backtest → gates → results) plus an auditable run-bundle pipeline. Meta-learning and low-latency execution are on the roadmap.
               </p>
 
               <div
@@ -396,25 +392,27 @@ export default function MarketMindHero() {
             </div>
           </div>
 
-          {/* Stack / tech row stays as-is, under hero */}
+          {/* Stack: current vs roadmap */}
           <div className="mt-12 flex flex-wrap items-center gap-4 text-xs text-slate-500">
             <span className="uppercase tracking-[0.2em] text-slate-400">STACK</span>
             <span>Python 3.12</span>
             <span className="h-[1px] w-6 bg-slate-700" />
-            <span>C++20 / ONNX Runtime</span>
+            <span>C++20 / ONNX (Phase III)</span>
             <span className="h-[1px] w-6 bg-slate-700" />
-            <span>TensorRT 10.x / CUDA 12.x</span>
+            <span>TensorRT / CUDA (planned)</span>
             <span className="h-[1px] w-6 bg-slate-700" />
             <span>JavaFX · Spring Boot</span>
           </div>
         </div>
       </section>
 
-      {/* Credibility strip: latency, meta-learning, risk, stack */}
-      <section className="max-w-7xl mx-auto px-6 pt-4 pb-16">
+      {/* Current platform vs Roadmap */}
+      <section className="max-w-7xl mx-auto px-6 pt-4 pb-16" aria-labelledby="current-vs-roadmap-heading">
+        <h2 id="current-vs-roadmap-heading" className="sr-only">Current platform and roadmap</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Card className="border-border/60 bg-slate-900/60 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">Available now</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 mt-1">
               Validation
             </p>
             <p className="mt-2 text-lg font-semibold text-slate-50">
@@ -425,7 +423,8 @@ export default function MarketMindHero() {
             </p>
           </Card>
           <Card className="border-border/60 bg-slate-900/60 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-wide text-amber-400/90">Planned</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 mt-1">
               Meta-learning
             </p>
             <p className="mt-2 text-sm text-slate-50">
@@ -433,7 +432,8 @@ export default function MarketMindHero() {
             </p>
           </Card>
           <Card className="border-border/60 bg-slate-900/60 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-wide text-amber-400/90">Planned</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 mt-1">
               Risk controls
             </p>
             <p className="mt-2 text-sm text-slate-50">
@@ -441,7 +441,8 @@ export default function MarketMindHero() {
             </p>
           </Card>
           <Card className="border-border/60 bg-slate-900/60 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">Current + roadmap</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 mt-1">
               Runtime stack
             </p>
             <p className="mt-2 text-sm text-slate-50">
@@ -451,14 +452,14 @@ export default function MarketMindHero() {
         </div>
       </section>
 
-      {/* Performance Benchmarks – now also acts as Performance teaser */}
+      {/* Performance Benchmarks – roadmap targets only, not production telemetry */}
       <section className="relative max-w-7xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             Performance Targets (Illustrative)
           </h2>
           <p className="text-lg sm:text-xl text-slate-400">
-            Illustrative targets for future perf runs — replace with measured telemetry snapshots.
+            Roadmap/illustrative targets only — not measured production telemetry. Replace with your own telemetry when Phase II/III components exist.
           </p>
         </div>
 
@@ -466,7 +467,7 @@ export default function MarketMindHero() {
           <div className="bg-slate-900/30 backdrop-blur-sm border border-white/10 rounded-xl p-8">
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-3">
               <Gauge className="w-6 h-6 text-emerald-400" />
-              Latency Targets (ms)
+              Illustrative target: Latency (ms)
             </h3>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={benchmarkData}>
@@ -484,15 +485,15 @@ export default function MarketMindHero() {
             </ResponsiveContainer>
             <div className="mt-6 grid grid-cols-3 gap-4">
               <div className="text-center">
-                <div className="text-xs text-slate-400 mb-1">p50</div>
+                <div className="text-xs text-slate-400 mb-1">Illustrative target: p50</div>
                 <div className="text-sm font-semibold text-emerald-400">2.0ms</div>
               </div>
               <div className="text-center">
-                <div className="text-xs text-slate-400 mb-1">p95</div>
+                <div className="text-xs text-slate-400 mb-1">Illustrative target: p95</div>
                 <div className="text-sm font-semibold text-emerald-400">6.0ms</div>
               </div>
               <div className="text-center">
-                <div className="text-xs text-slate-400 mb-1">p99</div>
+                <div className="text-xs text-slate-400 mb-1">Illustrative target: p99</div>
                 <div className="text-sm font-semibold text-emerald-400">12ms</div>
               </div>
             </div>
@@ -549,15 +550,14 @@ export default function MarketMindHero() {
         </div>
       </section>
 
-      {/* Architecture Visualization – acts as Architecture teaser */}
+      {/* Architecture Visualization – current vs roadmap */}
       <section className="relative max-w-7xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             Multi-Language Architecture
           </h2>
           <p className="text-lg sm:text-xl text-slate-400">
-            Validation-first control plane over a low-latency C++/GPU runtime and multi-language
-            clients.
+            Validation-first control plane today; C++/GPU runtime and multi-language execution are on the roadmap.
           </p>
         </div>
 
@@ -664,7 +664,7 @@ export default function MarketMindHero() {
                 Request Access
               </a>
               <a
-                href="/demo"
+                href="/contact"
                 className="px-8 py-4 bg-white/5 backdrop-blur-sm rounded-lg font-semibold hover:bg-white/10 transition-all border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
                 Schedule Deep-Dive Demo

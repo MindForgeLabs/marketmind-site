@@ -6,12 +6,28 @@ import { Button, Card } from "@marketmind/ui";
 export const metadata: Metadata = {
   title: "Performance | MarketMind",
   description:
-    "Latency, throughput, and stability characteristics of the MarketMind runtime, with example benchmarks.",
+    "Current platform: validation and backtesting. Illustrative roadmap targets for latency and throughput; no production telemetry or GPU inference shipped yet.",
 };
 
 export default function PerformancePage() {
   return (
     <main className="mx-auto max-w-5xl px-6 py-10 text-slate-200">
+      {/* Current scope vs Target architecture */}
+      <div className="mb-8 rounded-lg border border-slate-700 bg-slate-900/50 p-4">
+        <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 mb-1">
+          Current scope
+        </p>
+        <p className="text-sm text-slate-300 mb-4">
+          Today: validation, backtesting, gate CLI, run bundles, and artifact registry. No GPU inference or production latency SLOs shipped.
+        </p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-amber-400/90 mb-1">
+          Target architecture (roadmap)
+        </p>
+        <p className="text-sm text-slate-400">
+          Latency and throughput numbers below are illustrative roadmap targets only — not measured production telemetry.
+        </p>
+      </div>
+
       <header className="mb-8 space-y-3">
         <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
           Documentation
@@ -20,29 +36,26 @@ export default function PerformancePage() {
           Performance &amp; Benchmarks
         </h1>
         <p className="max-w-2xl text-sm text-slate-400">
-          MarketMind is engineered as a low-latency C++/GPU runtime with predictable
-          performance under real-world loads. This page summarizes key latency,
-          throughput, and regime-aware performance characteristics. Numbers here may be
-          example/target values until hardened.
+          The current platform focuses on governed backtesting and validation. Any latency or throughput figures on this page are illustrative targets for future Phase II/III work, not current production metrics.
         </p>
       </header>
 
-      {/* Summary metrics */}
+      {/* Summary metrics – all labeled as illustrative targets */}
       <section className="grid gap-4 md:grid-cols-3">
         <SummaryCard
-          title="Inference latency (GPU)"
+          title="Illustrative target: Inference latency (GPU)"
           metric="p95 ≈ 3 ms"
-          body="Single-asset inference latency on a modern GPU under typical production-like load. Replace with your measured benchmarks."
+          body="Planned (Phase III). GPU inference is not yet shipped. Single-asset inference target on a modern GPU; replace with your measured benchmarks when available."
         />
         <SummaryCard
-          title="Backtest throughput"
+          title="Illustrative target: Backtest throughput"
           metric="1k+ orders/s"
-          body="Example throughput for historical replay per node, including feature computation and inference."
+          body="Example throughput for historical replay per node. Not production telemetry; for roadmap context only."
         />
         <SummaryCard
-          title="Meta-portfolio lift"
+          title="Illustrative target: Meta-portfolio lift"
           metric="+N% vs baseline"
-          body="Illustrative performance improvement of a meta-portfolio vs a static strategy set in a volatile regime."
+          body="Planned (Phase II). Illustrative improvement of a meta-portfolio vs a static strategy set. No production deployment yet."
         />
       </section>
 
@@ -67,15 +80,12 @@ export default function PerformancePage() {
       <section className="mt-10 space-y-4">
         <h2 className="text-xl font-semibold">Methodology</h2>
         <p className="text-sm text-slate-400">
-          Performance measurements should be obtained using replayed historical feeds and
-          synthetic order flows under controlled conditions. Latency is measured
-          end-to-end from event arrival to order decision, with and without risk overlays
-          enabled.
+          When Phase II/III components exist, performance measurements should be obtained using replayed historical feeds and
+          synthetic order flows under controlled conditions. Measured production telemetry will then be used for latency and throughput reporting.
         </p>
         <p className="text-sm text-slate-400">
-          For production deployments, validate benchmarks against your own hardware,
-          networks, and venues. MarketMind exposes telemetry hooks so you can monitor
-          p50/p95/p99 latencies, throughput, and strategy-level metrics over time.
+          For future production deployments, validate benchmarks against your own hardware,
+          networks, and venues. Telemetry hooks for p50/p95/p99 and strategy-level metrics are planned as part of the roadmap.
         </p>
       </section>
 

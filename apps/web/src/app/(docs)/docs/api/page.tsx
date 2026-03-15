@@ -11,10 +11,7 @@ export default function ApiOverviewPage() {
           MarketMind APIs
         </h1>
         <p className="mt-3 text-sm text-slate-400">
-          MarketMind exposes multiple surfaces for integrating the meta-learning
-          runtime with your own infrastructure. Start with REST for control-plane
-          operations, then move to gRPC or WebSockets for low-latency data and
-          execution.
+          MarketMind is designed for multiple API surfaces. REST is used for control-plane and pipeline operations today. gRPC and WebSockets for low-latency data and execution are planned (Phase II/III); proto/stubs may exist but no running inference or streaming service is shipped yet.
         </p>
       </header>
 
@@ -35,9 +32,10 @@ export default function ApiOverviewPage() {
 
         <article className="rounded-xl border border-white/10 bg-slate-900/40 p-4">
           <h2 className="text-base font-semibold text-slate-50">gRPC API</h2>
+          <p className="mt-2 text-xs text-amber-400/90">Planned (Phase II/III).</p>
           <p className="mt-2 text-xs text-slate-400">
             High-throughput, low-latency access to signals, decisions, and telemetry
-            from typed clients.
+            from typed clients. Proto/stubs may exist; no running inference service yet.
           </p>
           <Link
             href="/docs/api/grpc"
@@ -49,9 +47,10 @@ export default function ApiOverviewPage() {
 
         <article className="rounded-xl border border-white/10 bg-slate-900/40 p-4">
           <h2 className="text-base font-semibold text-slate-50">WebSocket API</h2>
+          <p className="mt-2 text-xs text-amber-400/90">Planned (Phase II/III). No live streaming API yet.</p>
           <p className="mt-2 text-xs text-slate-400">
             Stream live events, signals, and metrics into browsers or lightweight
-            clients.
+            clients (target design).
           </p>
           <Link
             href="/docs/api/websocket"

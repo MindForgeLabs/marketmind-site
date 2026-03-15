@@ -7,14 +7,13 @@ export default function DemoPage() {
       <div className="max-w-4xl mx-auto px-6 py-16">
         <header className="mb-10 text-center">
           <p className="text-xs font-semibold tracking-[0.2em] text-emerald-400 uppercase">
-            Live Demo
+            Schedule a demo
           </p>
           <h1 className="mt-2 text-3xl sm:text-4xl font-semibold tracking-tight">
             Schedule a deep-dive MarketMind walkthrough
           </h1>
           <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
-            We&apos;ll walk through the meta-learning architecture, C++/GPU runtime,
-            and how to integrate MarketMind into your existing pipelines.
+            We&apos;ll walk through current validation and backtest capabilities, then roadmap (meta-learning architecture, C++/GPU runtime), and how to integrate MarketMind into your pipelines.
           </p>
         </header>
 
@@ -22,10 +21,10 @@ export default function DemoPage() {
           <div className="text-sm text-slate-300 space-y-2">
             <p className="font-medium">What we usually cover:</p>
             <ul className="list-disc list-inside space-y-1 text-slate-400">
-              <li>High-level architecture &amp; deployment topologies</li>
-              <li>How the meta-learning layer selects strategies per regime</li>
-              <li>Latency / performance characteristics and observability</li>
-              <li>Integration options: desktop, web, Python, and C++</li>
+              <li>High-level architecture &amp; deployment topologies (current + roadmap)</li>
+              <li>How the meta-learning layer would select strategies per regime (Phase II, planned)</li>
+              <li>Latency / performance characteristics and observability (roadmap)</li>
+              <li>Integration options: desktop, web, Python, and C++ (current vs planned)</li>
             </ul>
           </div>
 

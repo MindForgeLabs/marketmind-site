@@ -4,25 +4,25 @@ export default function GuidesPage() {
   const guides = [
     {
       title: "First Strategy",
-      description: "Build and deploy your first trading strategy.",
+      description: "Build and validate your first trading strategy (backtest and gates).",
       href: "/guides/first-strategy",
       time: "15 min",
     },
     {
       title: "Model Training",
-      description: "Train a Transformer model and export it to ONNX.",
+      description: "Planned (Phase II): Train a Transformer model and export to ONNX. Not shipped yet.",
       href: "/guides/model-training",
       time: "30 min",
     },
     {
       title: "Performance Tuning",
-      description: "Optimize inference latency and throughput.",
+      description: "Optimize inference latency and throughput. Planned (Phase III).",
       href: "/guides/performance-tuning",
       time: "45 min",
     },
     {
       title: "Production Deployment",
-      description: "Deploy strategies to production with confidence.",
+      description: "Planned (Phase III): Deploy strategies to production. Not available yet.",
       href: "/guides/production-deployment",
       time: "60 min",
     },

@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MarketMind – Hybrid ML + HFT Runtime",
+  title: "MarketMind – Validation-First Trading R&D Platform",
   description:
-    "Ultra-low-latency, hybrid ML algorithmic trading platform built on C++, TensorRT, and Python pipelines.",
+    "Validation-first algorithmic trading R&D platform: governed backtesting, auditable run bundles, gate validation, and reproducible research infrastructure.",
 };
 
 export default function RootLayout({

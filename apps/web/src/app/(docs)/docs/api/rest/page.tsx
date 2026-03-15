@@ -23,10 +23,10 @@ export default function RestAPIPage() {
                 <code className="text-emerald-400">/metrics</code>
               </div>
               <p className="text-slate-300 mb-3">
-                Get current system metrics such as latency, throughput, and win rate.
+                Get current system metrics. Example/placeholder response; latency and throughput are not production telemetry today (roadmap).
               </p>
               <div className="bg-slate-900 rounded p-3 text-sm">
-                <div className="text-slate-400 mb-2">Response:</div>
+                <div className="text-slate-400 mb-2">Response (example):</div>
                 <pre className="text-emerald-400">{`{
   "latencyP95Ms": 3.0,
   "throughputPerSec": 1000,

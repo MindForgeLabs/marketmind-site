@@ -1,4 +1,4 @@
-$root = Resolve-Path ".\"
+$root = Resolve-Path "."
 
 $ignoreDirs = @(
     ".git",
@@ -63,11 +63,12 @@ function Show-Tree {
         $item = $items[$i]
         $isLast = ($i -eq $items.Count - 1)
 
-        $connector = if ($isLast) { "└── " } else { "├── " }
+        $connector = if ($isLast) { "`-- " } else { "|-- " }
+        $newPrefix = if ($isLast) { "$Prefix    " } else { "$Prefix|   " }
+
         Write-Output ("{0}{1}{2}" -f $Prefix, $connector, $item.Name)
 
         if ($item.PSIsContainer) {
-            $newPrefix = if ($isLast) { "$Prefix    " } else { "$Prefix│   " }
             Show-Tree -Path $item.FullName -Prefix $newPrefix
         }
     }

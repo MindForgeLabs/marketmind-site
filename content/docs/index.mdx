@@ -1,6 +1,6 @@
 # MarketMind Documentation
 
-MarketMind is a **meta-learning control plane** running on top of an **ultra-low-latency C++/GPU runtime** for systematic trading.
+MarketMind is a **validation-first algorithmic trading R&D platform**: governed backtesting, auditable run bundles, gate validation, and reproducible research infrastructure.
 
 These docs are written for:
 
@@ -10,38 +10,20 @@ These docs are written for:
 
 ---
 
-## Information architecture
+## Documentation
 
-The docs are organized into four major areas:
+The docs follow this structure (same as the sidebar):
 
-### Getting Started
-
-Fastest way to see something work end-to-end.
-
-- [Quickstart](/docs/quickstart) – install the client, run health checks, execute a minimal pipeline.
-- **Installation** – coming soon.
-
-### Guides
-
-Task-oriented guides that walk through common workflows.
-
-- [Running pipelines](/docs/pipelines) – how to define, schedule, and monitor pipelines. _(stub)_
-- [Strategy examples](/docs/strategies) – examples of single-strategy and meta-strategy setups. _(stub)_
-
-### Concepts
-
-Background material and system-level mental models.
-
-- [Architecture](/architecture) – high-level system design and core components.
-- [Meta-learning & regimes](/docs/meta-learning) – how regime detection and policy selection work. _(stub)_
-- [Risk model](/docs/risk) – kill switches, limits, and overlays. _(stub)_
-
-### API Reference
-
-Deep dives and generated references.
-
-- [Python API (Read the Docs)](https://docs.marketmind.ai/) – full API reference. _(placeholder URL)_
-- [Configuration schema](/docs/config) – key config options and examples. _(stub)_
+1. [Quickstart](/docs/quickstart) – install the client, run health checks, execute a minimal pipeline.
+2. [Architecture](/docs/architecture) – high-level system design and core components.
+3. [API](/docs/api) – gRPC, REST, and WebSocket interfaces (sub-pages under API).
+4. [Strategies](/docs/strategies) – strategy examples and meta-strategy setups.
+5. [Risk](/docs/risk) – kill switches, limits, and overlays.
+6. [Installation](/docs/installation) – installation and environment setup.
+7. [Telemetry](/docs/telemetry) – observability and metrics.
+8. [Caching](/docs/caching) – caching behavior and configuration.
+9. [ML Pipeline (planned)](/docs/ml-pipeline) – target ML pipeline; not yet shipped.
+10. [C++ Runtime (planned)](/docs/cpp-runtime) – target C++ runtime; not yet shipped.
 
 ---
 
@@ -49,4 +31,4 @@ Deep dives and generated references.
 
 If you want to **see something work in 5–10 minutes**, start with the [Quickstart](/docs/quickstart).
 
-If you want a **system-level picture first**, read the [Architecture](/architecture) and [Performance](/performance) pages, then come back here for specific guides.
+If you want a **system-level picture first**, read [Architecture](/docs/architecture), then use the list above for specific topics.

@@ -8,22 +8,17 @@ export function Footer() {
           <div>
             <h3 className="font-bold text-lg mb-4">MarketMind</h3>
             <p className="text-sm text-slate-400">
-              Ultra-low-latency algorithmic trading platform for institutional and
-              advanced retail traders.
+              Validation-first algorithmic trading research platform for systematic
+              strategy development, governed backtesting, and reproducible run bundles.
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Platform</h4>
+            <h4 className="font-semibold mb-4">Product</h4>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
                 <Link href="/features" className="hover:text-emerald-400 transition">
                   Features
-                </Link>
-              </li>
-              <li>
-                <Link href="/pricing" className="hover:text-emerald-400 transition">
-                  Pricing
                 </Link>
               </li>
               <li>
@@ -35,7 +30,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Resources</h4>
+            <h4 className="font-semibold mb-4">Docs &amp; resources</h4>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
                 <Link href="/docs" className="hover:text-emerald-400 transition">
@@ -43,13 +38,23 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/docs/api" className="text-sm text-slate-400 hover:text-slate-100">
+                <Link href="/docs/api" className="hover:text-emerald-400 transition">
                   API Reference
                 </Link>
               </li>
               <li>
                 <Link href="/guides" className="hover:text-emerald-400 transition">
                   Guides
+                </Link>
+              </li>
+              <li>
+                <Link href="/docs/architecture" className="hover:text-emerald-400 transition">
+                  Architecture
+                </Link>
+              </li>
+              <li>
+                <Link href="/performance" className="hover:text-emerald-400 transition">
+                  Performance
                 </Link>
               </li>
             </ul>

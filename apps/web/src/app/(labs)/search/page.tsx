@@ -32,7 +32,7 @@ const docsIndex: DocLink[] = [
         title: "ML Pipeline",
         href: "/docs/ml-pipeline",
         category: "Core Concepts",
-        description: "Training, exporting, and deploying ML models.",
+        description: "Planned (Phase II): Training, export, and deployment of ML models. Not shipped yet.",
     },
     // Add more docs as you flesh the site out
 ];

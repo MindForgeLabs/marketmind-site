@@ -6,7 +6,7 @@ describe("Footer", () => {
   it("shows the MarketMind description", () => {
     render(<Footer />);
     expect(
-      screen.getByText(/Ultra-low-latency algorithmic trading platform/i),
+      screen.getByText(/validation-first algorithmic trading research platform/i),
     ).toBeInTheDocument();
   });
 
