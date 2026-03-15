@@ -113,6 +113,16 @@ npm run start
 
 The default port is `3000`. Customize with `PORT=xxxx` when supported by your environment (e.g., hosting platform).
 
+## Deployment (Vercel)
+
+The repo is an npm **workspaces** monorepo (`apps/*`, `packages/*`). The Next.js app is in **apps/web** and depends on **packages/ui** and **packages/domain**.
+
+1. **Root Directory:** Leave **blank** (use repo root). So the full repo is deployed and workspace packages are available.
+2. **Install:** Root `vercel.json` uses `npm install` at repo root, which installs all workspaces (including `apps/web` and `packages/ui`), so `@marketmind/ui` and its dependencies resolve.
+3. **Build:** `npm run build` runs the root script, which builds the app in `apps/web`. Output is `apps/web/.next`.
+
+Do **not** set Root Directory to `apps/web`—that can omit `packages/` and cause "Module not found" for `@marketmind/ui` dependencies (e.g. `clsx`, `tailwind-merge`, `@radix-ui/react-slot`).
+
 ## Tests
 
 - Test runner: Vitest (`vitest.config.ts`) with `jsdom` environment.

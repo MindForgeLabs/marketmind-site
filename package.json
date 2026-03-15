@@ -2,9 +2,13 @@
   "name": "marketmind-site",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "dev": "npm run dev --prefix apps/web",
-    "build": "npm run build --prefix apps/web",
+    "build": "cd apps/web && npx next build",
     "start": "npm run start --prefix apps/web",
     "lint": "npm run lint --prefix apps/web",
     "type-check": "npm run type-check --prefix apps/web",
