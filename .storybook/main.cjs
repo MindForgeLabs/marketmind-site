@@ -11,7 +11,7 @@ const config = {
         name: '@storybook/nextjs',
         // options: { builder: { name: '@storybook/builder-vite' } }, // optional
     },
-    stories: ['../src/**/*.stories.@(ts|tsx|mdx)'],
+    stories: ['../apps/web/src/**/*.stories.@(ts|tsx|mdx)'],
     addons: [
         '@storybook/addon-essentials',
         '@storybook/addon-a11y',
@@ -24,8 +24,8 @@ const config = {
         cfg.resolve = cfg.resolve || {}
         cfg.resolve.alias = {
             ...(cfg.resolve.alias || {}),
-            '@marketmind': path.resolve(dirname, '../src'),
-            '@marketmind/*': path.resolve(dirname, '../src/*'),
+            '@marketmind': path.resolve(dirname, '../apps/web/src'),
+            '@marketmind/*': path.resolve(dirname, '../apps/web/src/*'),
         }
         return cfg
     },

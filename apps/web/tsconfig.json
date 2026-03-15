@@ -1,22 +1,19 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ES2022"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./apps/web/src/*"],
-      "@/components/*": ["./apps/web/src/components/*"],
-      "@/lib/*": ["./apps/web/src/lib/*"],
-      "@marketmind/*": ["./apps/web/src/*"],
-      "@marketmind/domain": ["./packages/domain/src/index.ts"],
-      "@marketmind/ui": ["./packages/ui/src/index.ts"]
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@content/*": ["../../content/*"],
+      "@marketmind/*": ["./src/*"],
+      "@marketmind/domain": ["../../packages/domain/src/index.ts"],
+      "@marketmind/ui": ["../../packages/ui/src/index.ts"]
     },
     "allowJs": false,
     "strict": true,
@@ -32,25 +29,17 @@
     "isolatedModules": true,
     "skipLibCheck": true,
     "incremental": true,
-    "types": [
-      "vitest/globals",
-      "@testing-library/jest-dom"
-    ],
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
+    "plugins": [{ "name": "next" }]
   },
   "include": [
-    "apps/web/next-env.d.ts",
-    "apps/web/src/**/*.ts",
-    "apps/web/src/**/*.tsx",
-    "apps/web/src/**/*.d.ts",
+    "next-env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.d.ts",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
+

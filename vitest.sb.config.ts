@@ -8,12 +8,12 @@ const dirname =
 
 export default defineConfig({
   plugins: [react()],
-  resolve: {
-    alias: {
-      '@marketmind': path.resolve(dirname, 'src'),
-      '@marketmind/*': path.resolve(dirname, 'src/*'),
+    resolve: {
+      alias: {
+        '@marketmind': path.resolve(dirname, 'apps/web/src'),
+        '@marketmind/*': path.resolve(dirname, 'apps/web/src/*'),
+      },
     },
-  },
   test: {
     environment: 'jsdom',
     globals: true,

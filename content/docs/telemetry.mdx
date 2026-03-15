@@ -1,0 +1,27 @@
+# Telemetry & metrics
+
+This page describes **observability** for MarketMind runtimes: metrics, tracing, and logging so you can monitor pipelines and debug in production.
+
+---
+
+## What we expose
+
+- **Metrics** – Latency (e.g. P95), throughput, win rate, and other performance indicators. Exposed over the same surface as your strategy and API usage.
+- **Traces** – Request and pipeline spans so you can follow a decision from ingest through inference to execution.
+- **Logs** – Structured logs for errors, health checks, and key lifecycle events.
+
+---
+
+## Using metrics in production
+
+- Configure your observability backend (Prometheus, Grafana, or your existing stack) to scrape or receive metrics from the runtime.
+- Use the health and metrics endpoints to validate deployments and set SLOs.
+- See the [Quickstart](/docs/quickstart) for a minimal run, and the [ML pipeline](/docs/ml-pipeline) doc for how data flows through the system.
+
+---
+
+## Next steps
+
+- [Quickstart](/docs/quickstart) – get a minimal pipeline running.
+- [Architecture](/architecture) – system design and components.
+- [ML pipeline](/docs/ml-pipeline) – stages and data flow.

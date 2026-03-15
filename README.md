@@ -6,11 +6,13 @@ This README documents the stack, requirements, commands, environment variables, 
 
 ## Overview
 
-- App router pages under `src/app` with MDX support for docs (e.g., `src/app/docs/...`).
+- Next.js app in **apps/web** (App Router, MDX support for docs).
+- Shared packages: **packages/ui**, **packages/domain**, **packages/data-access**.
+- Docs content: MDX-backed docs live in **content/docs**; routes in `apps/web` import via `@content/docs/*`.
 - Tailwind CSS for styling with a custom theme and Geist fonts via `next/font`.
 - Storybook for component development/documentation.
 - Vitest for unit tests (with JSDOM). Optional browser/UI runners available.
-- Basic API route example at `src/app/api/positions/route.ts`.
+- Example API route: `apps/web/src/app/api/health/route.ts`.
 
 ## Tech Stack
 
@@ -50,7 +52,7 @@ This README documents the stack, requirements, commands, environment variables, 
 
 ## Environment Variables
 
-Environment variables are validated in `src/lib/env.ts` using `zod`.
+Environment variables are validated in `apps/web/src/lib/env.ts` using `zod`.
 
 Define variables in a `.env.local` file at the project root (not committed):
 
@@ -67,7 +69,7 @@ NEXT_PUBLIC_SITE_URL=https://localhost:3000
 
 Notes:
 - `NODE_ENV` is handled by tooling (no need to set manually).
-- Add more env vars as features expand; update `src/lib/env.ts` schema accordingly.
+- Add more env vars as features expand; update `apps/web/src/lib/env.ts` schema accordingly.
 
 ## Scripts
 
@@ -114,8 +116,8 @@ The default port is `3000`. Customize with `PORT=xxxx` when supported by your en
 ## Tests
 
 - Test runner: Vitest (`vitest.config.ts`) with `jsdom` environment.
-- Setup files: `vitest.setup.tsx` (Testing Library, globals), plus optional Storybook testing config `vitest.sb.config.ts`.
-- Example tests live under `src/components/__tests__` and `src/components/ui/*.test.tsx`.
+- Setup files: `apps/web/vitest.setup.tsx` (Testing Library, globals), plus optional Storybook testing config `vitest.sb.config.ts`.
+- Example tests live under `apps/web/src/components/__tests__` and `apps/web/src/components/ui/*.test.tsx`.
 
 Run commands:
 
@@ -149,33 +151,36 @@ High-level layout (selected paths):
 
 ```
 .
-├─ src/
-│  ├─ app/                  # Next.js App Router (routes, layouts, API)
-│  │  ├─ layout.tsx         # Root layout
-│  │  ├─ page.tsx           # Home page
-│  │  ├─ api/positions/     # Example API route
-│  │  └─ docs/              # MDX/TSX docs pages
-│  ├─ components/           # UI components and tests
-│  ├─ lib/                  # Utilities (e.g., env validation)
-│  └─ stories/              # Storybook stories and assets
-├─ public/                  # Static assets
-├─ next.config.ts           # Next.js config + security headers + MDX
-├─ tailwind.config.ts       # TailwindCSS config
-├─ postcss.config.mjs       # PostCSS config
-├─ eslint.config.mjs        # ESLint config
-├─ tsconfig.json            # TypeScript config
-├─ vitest.config.ts         # Vitest (node/jsdom) config
-├─ vitest.sb.config.ts      # Vitest config for Storybook
-├─ vitest.setup.tsx         # Vitest setup
-├─ components.json          # Shadcn/tailwind glue (css path)
-├─ package.json             # Scripts and dependencies
-└─ CHANGELOG.md             # Project change history
+├─ apps/
+│  └─ web/                     # Next.js app (App Router, MDX, API)
+│     ├─ src/app/              # Routes, layouts, API
+│     ├─ src/components/       # UI components and tests
+│     ├─ src/lib/              # Utilities (e.g., env validation)
+│     ├─ next.config.ts
+│     ├─ tailwind.config.ts
+│     ├─ postcss.config.mjs
+│     └─ package.json
+├─ packages/
+│  ├─ ui/                      # Shared UI primitives
+│  ├─ domain/                  # Domain types and models
+│  └─ data-access/             # Data layer (cache tags, etc.)
+├─ content/
+│  └─ docs/                    # MDX source of truth for docs (quickstart, telemetry, ml-pipeline, index)
+├─ .storybook/                 # Storybook config (root)
+├─ vitest.config.ts            # Vitest config (root)
+├─ package.json                # Root scripts (delegate to apps/web)
+└─ CHANGELOG.md
 ```
 
 Entry points:
-- App Router root: `src/app/layout.tsx`, `src/app/page.tsx`
-- API routes: under `src/app/api/*/route.ts`
-- Docs: `src/app/docs/*` (MDX supported)
+- App: `apps/web/src/app/layout.tsx`, `apps/web/src/app/page.tsx`
+- API routes: `apps/web/src/app/api/*/route.ts` (e.g. `/api/health`)
+- Docs: `apps/web/src/app/(docs)/docs/**`; MDX content in `content/docs/` imported via `@content/docs/*`
+
+### Contributing: docs and content
+
+- **MDX-backed docs** live in **content/docs/** (e.g. `quickstart.mdx`, `telemetry.mdx`, `ml-pipeline.mdx`, `index.mdx`). Edit those files; the route under `apps/web/src/app/(docs)/docs/**` imports from `@content/docs/<name>.mdx`.
+- **TSX-only docs** (no MDX file) live only under `apps/web/src/app/(docs)/docs/**` (e.g. api, architecture, caching, installation). Edit them in place.
 
 ## Linting & Formatting
 

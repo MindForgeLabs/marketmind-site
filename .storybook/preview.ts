@@ -1,5 +1,5 @@
 // D:\marketmind\web\.storybook\preview.ts
-import '../src/styles/globals.css'
+import '../apps/web/src/app/globals.css'
 
 const previewConfig = {
     parameters: {
