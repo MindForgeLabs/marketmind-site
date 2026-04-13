@@ -14,6 +14,13 @@ export default function FeaturesPage() {
         "Governed backtest boundary with purge/embargo splits, leakage/property tests, and the first trusted stat_arb_pairs strategy slice. Content-addressable artifact registry (CAS) with run state machine.",
       benefits: ["Purge/embargo splits", "Artifact registry (CAS)", "stat_arb_pairs on canonical path"],
     },
+    {
+      badge: "Active (Phase II-0)",
+      title: "Validation Scaffolding",
+      description:
+        "Non-promotable Phase II-0 scaffolding: task manifest and meta-validity artifact schemas, threshold governance hooks, and harness scaffolds for future promotable evaluation. These are scaffolds, not shipped Phase II machinery.",
+      benefits: ["Task manifest schema", "Meta-validity report schema", "Threshold governance hooks"],
+    },
   ];
 
   const roadmap = [
@@ -24,9 +31,9 @@ export default function FeaturesPage() {
       benefits: ["50–150x faster than Python-only stacks", "GPU acceleration", "Zero-copy pipelines"],
     },
     {
-      badge: "Planned (Phase II)",
+      badge: "Planned (Phase II, conditional)",
       title: "Hybrid ML Models",
-      description: "Combine Transformers, LSTMs, and classical indicators. Not yet shipped.",
+      description: "Promotable meta-learning allocator combining Transformers, LSTMs, and classical indicators — conditional on Phase II-0 scaffolding confirming a viable evidence path. Not yet shipped.",
       benefits: ["Flexible architecture", "ONNX export", "Fast iteration"],
     },
     {
@@ -48,7 +55,7 @@ export default function FeaturesPage() {
       <div className="max-w-7xl mx-auto px-6 py-16">
         <h1 className="text-4xl font-bold mb-4">Features</h1>
         <p className="text-xl text-slate-300 mb-12">
-          Governed backtesting and validation today, with a roadmap toward production execution and ML.
+          Governed backtesting and validation delivered (Phase 0 & Phase I); Phase II-0 validation scaffolding active; promotable ML and execution are roadmap items.
         </p>
 
         <section className="mb-16" aria-labelledby="current-platform-heading">

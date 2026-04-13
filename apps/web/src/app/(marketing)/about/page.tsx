@@ -10,14 +10,22 @@ export default function AboutPage() {
             What we ship today
           </p>
           <p className="text-sm text-slate-300 mb-4">
-            MarketMind is a validation-first algorithmic trading R&D platform focused on governed backtesting, reproducibility, and gate validation. We deliver auditable run bundles, fail-closed validation, PIT-safe backtesting, and the first trusted strategy slice (stat_arb_pairs) on the canonical path.
+            MarketMind is a validation-first algorithmic trading R&D platform focused on governed backtesting, reproducibility, and gate validation. We deliver auditable run bundles, fail-closed validation, PIT-safe backtesting, and the first trusted strategy slice (stat_arb_pairs) on the canonical path. Phase I research protocols and governing frameworks — data governance charter, threshold governance register, signal generation protocol, and Phase II artifact contract — are now frozen as source of truth.
           </p>
           <p className="text-xs font-semibold uppercase tracking-wide text-amber-400/90 mb-2">
             Where we&apos;re headed
           </p>
-          <p className="text-sm text-slate-400">
-            The roadmap includes meta-learning allocation, ML training pipelines, C++/GPU inference, live data feeds, and broker integration (Phase II/III). These are not shipped today.
-          </p>
+          <div className="text-sm text-slate-400 space-y-3">
+            <p>
+              <span className="text-slate-300 font-medium">Near-term (Phase II-0, active):</span> Non-promotable validation scaffolding — task manifest and meta-validity artifact schemas, validation harness scaffolding, and threshold governance hooks. These are scaffolds, not promotable machinery.
+            </p>
+            <p>
+              <span className="text-slate-300 font-medium">Phase II (conditional, validation-gated):</span> Promotable meta-learning allocator and regime-indexed task learning — only if the validation scaffolding confirms a viable evidence path against the incumbent baseline. Not shipped today.
+            </p>
+            <p>
+              <span className="text-slate-300 font-medium">Phase III (conditional):</span> C++/GPU inference, live execution, ML training pipelines, live data feeds, and broker integration — conditional on Phase II validation. Not shipped today.
+            </p>
+          </div>
         </div>
 
         <section className="mb-12">

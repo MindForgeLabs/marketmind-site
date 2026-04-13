@@ -105,9 +105,9 @@ const generateData = () => {
 
 const metrics = [
   {
-    label: "Phase 0 status",
+    label: "Research phase status",
     value: "9/9",
-    detail: "Phase 0 complete; Phase I in progress (I-B/C/D delivered)",
+    detail: "Phase 0 & Phase I complete · Phase II-0 validation scaffolding active",
     icon: Shield,
     color: "text-emerald-400",
   },
@@ -272,7 +272,7 @@ export default function MarketMindHero() {
                   mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                 }`}
               >
-                Today, MarketMind ships a Phase 0 vertical slice (UI → Python → backtest → gates → results) plus an auditable run-bundle pipeline. Meta-learning and low-latency execution are on the roadmap.
+                Phase 0 and Phase I are complete — the foundational research substrate, governing protocols, and proof burden are frozen as source of truth. The active work is Phase II-0: non-promotable scaffolding for validation harnesses and artifact contracts. Meta-learning and low-latency execution remain on the roadmap, conditional on validation evidence.
               </p>
 
               <div
@@ -653,8 +653,7 @@ export default function MarketMindHero() {
               Ready to Wire This Into Your Stack?
             </h2>
             <p className="text-lg sm:text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Phase 0 provides the contracts and validation surface (bundles + gates). The live
-              C++ inference service, streaming data, and production telemetry are roadmap deliverables.
+              Phase I is complete — the research protocols and governing frameworks are frozen as source of truth. Phase II-0 scaffolding (non-promotable harnesses and artifact contracts) is underway. The meta-learning allocator, C++ inference service, streaming data, and production telemetry remain roadmap deliverables.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a
