@@ -15,11 +15,11 @@ export default function FeaturesPage() {
       benefits: ["Purge/embargo splits", "Artifact registry (CAS)", "stat_arb_pairs on canonical path"],
     },
     {
-      badge: "Active (Phase II-0)",
-      title: "Validation Scaffolding",
+      badge: "Phase II-0 (non-promotable)",
+      title: "Governed artifacts & pilot harness",
       description:
-        "Non-promotable Phase II-0 scaffolding: task manifest and meta-validity artifact schemas, threshold governance hooks, and harness scaffolds for future promotable evaluation. These are scaffolds, not shipped Phase II machinery.",
-      benefits: ["Task manifest schema", "Meta-validity report schema", "Threshold governance hooks"],
+        "Non-promotable Phase II-0 lane: governed II-0B artifact triple and contract discipline are complete on that path; II-0C adds a research-only pilot harness (wiring and reviewer shells — not encoder validity or allocator proof). Not promotable Phase II machinery.",
+      benefits: ["II-0B governed triple + shell checks", "II-0C research-only harness", "Threshold governance hooks (borrowed refs, reviewer visibility)"],
     },
   ];
 
@@ -55,7 +55,7 @@ export default function FeaturesPage() {
       <div className="max-w-7xl mx-auto px-6 py-16">
         <h1 className="text-4xl font-bold mb-4">Features</h1>
         <p className="text-xl text-slate-300 mb-12">
-          Governed backtesting and validation delivered (Phase 0 & Phase I); Phase II-0 validation scaffolding active; promotable ML and execution are roadmap items.
+          Governed backtesting and validation delivered (Phase 0 & Phase I); Phase II-0 non-promotable harness complete (II-0B artifact lane + II-0C research pilot wiring); promotable ML and execution are roadmap items.
         </p>
 
         <section className="mb-16" aria-labelledby="current-platform-heading">

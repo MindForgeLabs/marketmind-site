@@ -107,7 +107,8 @@ const metrics = [
   {
     label: "Research phase status",
     value: "9/9",
-    detail: "Phase 0 & Phase I complete · Phase II-0 validation scaffolding active",
+    detail:
+      "Phase 0 & Phase I complete · II-0B governed artifact lane complete (non-promotable) · II-0C pilot harness complete (research-only wiring, not Phase II)",
     icon: Shield,
     color: "text-emerald-400",
   },
@@ -272,7 +273,7 @@ export default function MarketMindHero() {
                   mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                 }`}
               >
-                Phase 0 and Phase I are complete — the foundational research substrate, governing protocols, and proof burden are frozen as source of truth. The active work is Phase II-0: non-promotable scaffolding for validation harnesses and artifact contracts. Meta-learning and low-latency execution remain on the roadmap, conditional on validation evidence.
+                Phase 0 and Phase I are complete — the foundational research substrate, governing protocols, and proof burden are frozen as source of truth. On the non-promotable Phase II-0 lane, the governed II-0B artifact contract is complete and the II-0C pilot harness is complete as research-only wiring and reviewer shells (not promotable Phase II evidence, no GATE-II movement). Meta-learning and low-latency execution remain on the roadmap, conditional on validation evidence.
               </p>
 
               <div
@@ -653,7 +654,7 @@ export default function MarketMindHero() {
               Ready to Wire This Into Your Stack?
             </h2>
             <p className="text-lg sm:text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Phase I is complete — the research protocols and governing frameworks are frozen as source of truth. Phase II-0 scaffolding (non-promotable harnesses and artifact contracts) is underway. The meta-learning allocator, C++ inference service, streaming data, and production telemetry remain roadmap deliverables.
+              Phase I is complete — the research protocols and governing frameworks are frozen as source of truth. Phase II-0 non-promotable work includes a complete governed II-0B artifact lane and a complete II-0C research pilot harness (wiring and shells only — not the meta-learning allocator). The meta-learning allocator, C++ inference service, streaming data, and production telemetry remain roadmap deliverables.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a

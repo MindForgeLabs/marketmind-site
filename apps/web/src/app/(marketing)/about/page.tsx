@@ -17,7 +17,7 @@ export default function AboutPage() {
           </p>
           <div className="text-sm text-slate-400 space-y-3">
             <p>
-              <span className="text-slate-300 font-medium">Near-term (Phase II-0, active):</span> Non-promotable validation scaffolding — task manifest and meta-validity artifact schemas, validation harness scaffolding, and threshold governance hooks. These are scaffolds, not promotable machinery.
+              <span className="text-slate-300 font-medium">Phase II-0 (non-promotable, not Phase II):</span> The governed II-0B artifact-and-contract lane is complete on that lane; the II-0C pilot harness is complete as research-only MetaTask, comparison, and reporting wiring (including reviewer shells) — still no promotable trainer, allocator, or GATE-II promotion.
             </p>
             <p>
               <span className="text-slate-300 font-medium">Phase II (conditional, validation-gated):</span> Promotable meta-learning allocator and regime-indexed task learning — only if the validation scaffolding confirms a viable evidence path against the incumbent baseline. Not shipped today.

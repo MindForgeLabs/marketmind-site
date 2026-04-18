@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## Unreleased
 
+### Companion truth sync (MarketMind 7.2.3)
+
+- **`docs/website-claims-policy.md`:** Canonical companion stamps updated to README **7.2.3**, Implementation Plan **v6.5.10**, Technical Roadmap **v1.4.31**, Meta-Learning Core **v1.2.25**, Architecture Vision **v1.3.6**, Resolution Ledger **v1.0.52**; Phase II-0 rule clarified (II-0B / II-0C non-promotable harness vs promotable Phase II).
+- **Marketing & docs copy:** Homepage, About, Features, and Docs ML Pipeline metadata/callouts now state II-0B governed artifact lane complete and II-0C research pilot harness complete — explicitly non-promotable, not allocator or GATE-II readiness.
+
 ### Content / Overclaim removal
 
 - **Metadata and Footer:** Removed "ultra-low-latency" and "Hybrid ML + HFT Runtime"; site now describes MarketMind as a validation-first R&D platform.
