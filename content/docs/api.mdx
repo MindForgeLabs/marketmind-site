@@ -1,0 +1,17 @@
+# API
+
+The current public API surface is intentionally modest. It supports app health and control-plane style site behavior. It does not expose a live trading, streaming market data, or broker execution API.
+
+## Current
+
+- Health endpoint for site/runtime checks.
+- Static docs and content-rendering routes.
+- Explicit redirects from deferred surfaces to canonical docs.
+
+## Proposed
+
+Future API work may include REST control-plane routes, gRPC contracts, and WebSocket streams. Those surfaces remain planned until running services, contracts, provenance, and tests exist.
+
+## Removed Duplication
+
+The former separate REST, gRPC, and WebSocket reference pages now redirect here. Keeping one API page prevents planned protocol surfaces from reading like shipped product breadth.

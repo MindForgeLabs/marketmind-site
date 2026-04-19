@@ -10,8 +10,8 @@ export default defineConfig({
   plugins: [react()],
     resolve: {
       alias: {
-        '@marketmind': path.resolve(dirname, 'apps/web/src'),
-        '@marketmind/*': path.resolve(dirname, 'apps/web/src/*'),
+        '@': path.resolve(dirname, 'apps/web/src'),
+        '@marketmind/ui': path.resolve(dirname, 'packages/ui/src/index.ts'),
       },
     },
   test: {

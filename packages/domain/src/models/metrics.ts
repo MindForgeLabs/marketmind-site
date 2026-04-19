@@ -1,6 +1,6 @@
 /**
- * Shared shape for live metrics (latency, throughput, win rate).
- * Used by dashboard and API responses.
+ * Shared shape for illustrative metrics.
+ * Production telemetry is roadmap work, not current product truth.
  */
 export type MetricsResponse = {
   latencyP95Ms: number;

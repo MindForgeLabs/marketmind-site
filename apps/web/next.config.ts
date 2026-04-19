@@ -53,6 +53,25 @@ const config: NextConfig = {
       },
     ]
   },
+  async redirects() {
+    return [
+      { source: '/architecture', destination: '/docs/architecture', permanent: true },
+      { source: '/quickstart', destination: '/docs/quickstart', permanent: true },
+      { source: '/guides', destination: '/docs/quickstart', permanent: true },
+      { source: '/guides/:path*', destination: '/docs/quickstart', permanent: true },
+      { source: '/integrations', destination: '/docs/api', permanent: true },
+      { source: '/performance', destination: '/docs/telemetry', permanent: true },
+      { source: '/pricing', destination: '/contact', permanent: true },
+      { source: '/dashboard', destination: '/docs', permanent: false },
+      { source: '/demo', destination: '/contact', permanent: false },
+      { source: '/search', destination: '/docs', permanent: false },
+      { source: '/docs/api/grpc', destination: '/docs/api', permanent: true },
+      { source: '/docs/api/rest', destination: '/docs/api', permanent: true },
+      { source: '/docs/api/websocket', destination: '/docs/api', permanent: true },
+      { source: '/docs/desktop', destination: '/docs/architecture', permanent: true },
+      { source: '/docs/python-services', destination: '/docs/architecture', permanent: true },
+    ]
+  },
 }
 
 export default withMDX(config)

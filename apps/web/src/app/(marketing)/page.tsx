@@ -95,7 +95,7 @@ const generateData = () => {
   const data: { time: number; value: number }[] = [];
   let value = 100;
   for (let i = 0; i < 50; i++) {
-    value += (Math.random() - 0.48) * 2;
+    value += Math.sin(i * 0.45) * 0.9 + Math.cos(i * 0.17) * 0.35;
     data.push({ time: i, value });
   }
   return data;
@@ -194,16 +194,11 @@ python -m srcPy.cli.gate run_bundle_v1/{timestamp}_{hash}/
 // const chartData = generateData();
 
 export default function MarketMindHero() {
-  const [mounted, setMounted] = useState(false);
-  const [chartData, setChartData] = useState<{ time: number; value: number }[]>([]);
+  const mounted = true;
+  const [chartData] = useState(() => generateData());
   const [activeMetric, setActiveMetric] = useState(0);
   const [autoRotate, setAutoRotate] = useState(true);
   const [activeLayer, setActiveLayer] = useState(3);
-
-  useEffect(() => {
-    setMounted(true);
-    setChartData(generateData()); // ✅ client-only, no hydration mismatch
-  }, []);
 
   useEffect(() => {
     if (!autoRotate) return;
@@ -540,13 +535,13 @@ export default function MarketMindHero() {
           </div>
         </div>
 
-        {/* Performance CTAs into dedicated page + telemetry docs */}
+        {/* Performance CTAs into canonical docs */}
         <div className="mt-12 flex flex-wrap justify-center gap-4">
           <Button asChild>
-            <Link href="/performance">View Performance Page</Link>
+            <Link href="/docs/telemetry">Read Telemetry Docs</Link>
           </Button>
           <Button asChild variant="ghost">
-            <Link href="/docs/telemetry">See Telemetry &amp; Metrics Docs</Link>
+            <Link href="/docs/architecture">Review Architecture</Link>
           </Button>
         </div>
       </section>
@@ -603,10 +598,10 @@ export default function MarketMindHero() {
           </div>
         </div>
 
-        {/* Architecture CTAs into dedicated page + ML pipeline docs */}
+        {/* Architecture CTAs into canonical docs */}
         <div className="mt-12 flex flex-wrap justify-center gap-4">
           <Button asChild>
-            <Link href="/architecture">View Full Architecture</Link>
+            <Link href="/docs/architecture">View Architecture Docs</Link>
           </Button>
           <Button asChild variant="ghost">
             <Link href="/docs/ml-pipeline">Read ML Pipeline Docs</Link>

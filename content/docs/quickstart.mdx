@@ -1,22 +1,34 @@
-// content/docs/quickstart.mdx
-
 # Quickstart
 
-This guide walks you through a minimal MarketMind setup:
+This guide orients a new contributor to the current MarketMind public surface. It is intentionally scoped to research substrate work, not broker execution or live trading.
 
-1. Install the CLI or client.
-2. Run a health check.
-3. Execute a simple strategy pipeline.
-4. See where to go next.
+## What Exists Today
 
-> **Note**
-> CLI names and flags below are examples. Replace them with your real commands once your tooling is finalized.
+- Point-in-time-safe data handling.
+- Leakage-aware validation and purge/embargo discipline.
+- Deterministic run artifacts and canonical bundle/provenance boundaries.
+- Statistical and governance gates before promotion.
 
 ---
 
-## 1. Install the CLI
+## Local Setup
 
 ```bash
-# Example placeholder – change to your actual package
-pip install marketmind
+npm install
+npm run dev
 ```
+
+The web app lives under `apps/web`. Shared primitives live in `packages/ui`. Published docs content lives in `content/docs`.
+
+---
+
+## First Review Path
+
+1. Read [Architecture](/docs/architecture) to understand the current substrate and future lanes.
+2. Read [Strategies](/docs/strategies) to see how strategy claims are constrained by validation.
+3. Read [Risk](/docs/risk) to understand current gates versus planned execution controls.
+4. Treat [ML Pipeline](/docs/ml-pipeline) and [C++ Runtime](/docs/cpp-runtime) as proposed work, not shipped product capability.
+
+## Not Current Product Truth
+
+MarketMind does not currently claim a validated adaptive allocator, broker-integrated rollout, live execution readiness, or proven superiority over a simpler baseline.

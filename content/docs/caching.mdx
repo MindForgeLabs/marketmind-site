@@ -1,0 +1,15 @@
+# Caching
+
+Caching is part of deterministic research hygiene only when cache keys, inputs, and invalidation rules preserve provenance.
+
+## Current Principle
+
+Cache behavior must not hide data revisions, point-in-time boundaries, or artifact provenance. Research outputs should remain reproducible from canonical inputs.
+
+## Planned Runtime Caching
+
+Multi-tier runtime caching, shared memory caches, Redis state caches, and remote caches are target architecture concepts. Any latency figures are design targets unless backed by measured production telemetry.
+
+## Governance Rule
+
+If a cached value affects a promoted artifact, its source, version, timestamp policy, and invalidation path must be reviewable.

@@ -1,12 +1,12 @@
 # MarketMind Documentation
 
-MarketMind is a **validation-first algorithmic trading R&D platform**: governed backtesting, auditable run bundles, gate validation, and reproducible research infrastructure.
+MarketMind is a **governed research substrate** for systematic trading work. The current public truth is point-in-time-safe data handling, leakage-aware validation, deterministic artifacts, canonical bundle and provenance discipline, and statistical and governance gates.
 
 These docs are written for:
 
-- Quant researchers and PMs who want regime-aware strategies.
-- Infra and platform engineers who care about latency, observability, and safety.
-- Power users integrating MarketMind into existing research and execution stacks.
+- Researchers who need reproducible backtests and reviewable evidence.
+- Engineers who need deterministic artifact and provenance boundaries.
+- Reviewers who need to separate current capabilities from proposed allocator and execution work.
 
 ---
 
@@ -14,16 +14,29 @@ These docs are written for:
 
 The docs follow this structure (same as the sidebar):
 
-1. [Quickstart](/docs/quickstart) – install the client, run health checks, execute a minimal pipeline.
-2. [Architecture](/docs/architecture) – high-level system design and core components.
-3. [API](/docs/api) – gRPC, REST, and WebSocket interfaces (sub-pages under API).
-4. [Strategies](/docs/strategies) – strategy examples and meta-strategy setups.
-5. [Risk](/docs/risk) – kill switches, limits, and overlays.
+1. [Quickstart](/docs/quickstart) – orient to the current validation and artifact workflow.
+2. [Architecture](/docs/architecture) – current substrate boundaries and proposed future lanes.
+3. [API](/docs/api) – current health/control surface and planned API surfaces.
+4. [Strategies](/docs/strategies) – strategy development under PIT and leakage controls.
+5. [Risk](/docs/risk) – current statistical gates and future execution controls.
 6. [Installation](/docs/installation) – installation and environment setup.
-7. [Telemetry](/docs/telemetry) – observability and metrics.
+7. [Telemetry](/docs/telemetry) – artifact, run, and future runtime observability.
 8. [Caching](/docs/caching) – caching behavior and configuration.
-9. [ML Pipeline (planned)](/docs/ml-pipeline) – target ML pipeline; not yet shipped.
+9. [ML Pipeline (planned)](/docs/ml-pipeline) – conditional adaptive allocator work; not yet shipped.
 10. [C++ Runtime (planned)](/docs/cpp-runtime) – target C++ runtime; not yet shipped.
+
+---
+
+## Claim Frame
+
+Every public page should fit one of four categories:
+
+- **What exists today:** governed backtesting, PIT-safe data handling, leakage-aware validation, deterministic artifacts, provenance, and gates.
+- **Why it matters:** research claims need repeatable evidence before promotion.
+- **What is proposed:** adaptive allocation, richer APIs, live telemetry, and execution runtime work.
+- **What must be proven:** superiority over simpler baselines, allocator validity, execution readiness, and operational safety.
+
+The adaptive allocator is a candidate gated by evidence. It is not presented here as a validated product capability.
 
 ---
 

@@ -1,16 +1,16 @@
 # MarketMind Site
 
-Modern marketing/analytics site built with Next.js App Router, TypeScript, Tailwind CSS, MDX content, Vitest testing, and Storybook for UI docs.
+MarketMind public site and docs for a governed research substrate. The current story is validation-first research infrastructure, not a validated adaptive allocator or live execution platform.
 
 This README documents the stack, requirements, commands, environment variables, tests, and structure. Unknowns are marked as TODOs.
 
 ## Overview
 
 - Next.js app in **apps/web** (App Router, MDX support for docs).
-- Shared packages: **packages/ui**, **packages/domain**, **packages/data-access**.
+- Shared packages: **packages/ui** and **packages/domain**.
 - Docs content: MDX-backed docs live in **content/docs**; routes in `apps/web` import via `@content/docs/*`.
 - Tailwind CSS for styling with a custom theme and Geist fonts via `next/font`.
-- Storybook for component development/documentation.
+- Storybook for shared UI primitive documentation.
 - Vitest for unit tests (with JSDOM). Optional browser/UI runners available.
 - Example API route: `apps/web/src/app/api/health/route.ts`.
 
@@ -23,7 +23,6 @@ This README documents the stack, requirements, commands, environment variables, 
 - MDX: `@next/mdx` (App Router MDX pages)
 - Testing: Vitest `4.x`, Testing Library (`@testing-library/react`, `jest-dom`), optional `@vitest/ui`
 - Storybook: `^10` (Next.js + Vite builder)
-- RPC/Client libs: `@connectrpc/*` (web client) [not yet wired end-to-end]
 - Build tooling: Vite for tests, ESLint `^9`, Prettier `^3`
 
 ## Requirements
@@ -115,10 +114,10 @@ The default port is `3000`. Customize with `PORT=xxxx` when supported by your en
 
 ## Deployment (Vercel)
 
-The repo is an npm **workspaces** monorepo (`apps/*`, `packages/*`). The Next.js app is in **apps/web** and depends on **packages/ui** and **packages/domain**.
+The repo is an npm **workspaces** monorepo (`apps/*`, `packages/*`). The Next.js app is in **apps/web** and imports shared UI primitives from **packages/ui**. **packages/domain** is retained for shared domain types as that surface grows.
 
 1. **Root Directory:** Leave **blank** (use repo root). So the full repo is deployed and workspace packages are available.
-2. **Install:** Root `vercel.json` uses `npm install` at repo root, which installs all workspaces (including `apps/web` and `packages/ui`), so `@marketmind/ui` and its dependencies resolve.
+2. **Install:** Root `vercel.json` uses `npm install` at repo root, which installs all workspaces (including `apps/web` and `packages/ui`), so shared primitives resolve.
 3. **Build:** `npm run build` runs the root script, which builds the app in `apps/web`. Output is `apps/web/.next`.
 
 Do **not** set Root Directory to `apps/web`—that can omit `packages/` and cause "Module not found" for `@marketmind/ui` dependencies (e.g. `clsx`, `tailwind-merge`, `@radix-ui/react-slot`).
@@ -127,7 +126,7 @@ Do **not** set Root Directory to `apps/web`—that can omit `packages/` and caus
 
 - Test runner: Vitest (`vitest.config.ts`) with `jsdom` environment.
 - Setup files: `apps/web/vitest.setup.tsx` (Testing Library, globals), plus optional Storybook testing config `vitest.sb.config.ts`.
-- Example tests live under `apps/web/src/components/__tests__` and `apps/web/src/components/ui/*.test.tsx`.
+- Example tests live under `apps/web/src/components/__tests__` and `packages/ui/src/components/*.test.tsx`.
 
 Run commands:
 
@@ -142,6 +141,8 @@ Browser/E2E testing:
 - `playwright` is present in devDependencies but no test suite is configured yet. TODO: add Playwright tests and document commands.
 
 ## Storybook
+
+Storybook documents the real shared primitives from `packages/ui/src/components`. App-specific composed components stay under `apps/web/src/components`.
 
 Start Storybook locally:
 
@@ -164,7 +165,7 @@ High-level layout (selected paths):
 ├─ apps/
 │  └─ web/                     # Next.js app (App Router, MDX, API)
 │     ├─ src/app/              # Routes, layouts, API
-│     ├─ src/components/       # UI components and tests
+│     ├─ src/components/       # App-specific composed components and tests
 │     ├─ src/lib/              # Utilities (e.g., env validation)
 │     ├─ next.config.ts
 │     ├─ tailwind.config.ts
@@ -172,25 +173,27 @@ High-level layout (selected paths):
 │     └─ package.json
 ├─ packages/
 │  ├─ ui/                      # Shared UI primitives
-│  ├─ domain/                  # Domain types and models
-│  └─ data-access/             # Data layer (cache tags, etc.)
+│  └─ domain/                  # Domain types and models
 ├─ content/
-│  └─ docs/                    # MDX source of truth for docs (quickstart, telemetry, ml-pipeline, index)
+│  └─ docs/                    # Published docs source of truth
+├─ docs/                       # Internal repo/site governance notes only
 ├─ .storybook/                 # Storybook config (root)
 ├─ vitest.config.ts            # Vitest config (root)
-├─ package.json                # Root scripts (delegate to apps/web)
+├─ package.json                # Root workspace scripts
+├─ package-lock.json           # Canonical npm lockfile
 └─ CHANGELOG.md
 ```
 
 Entry points:
 - App: `apps/web/src/app/layout.tsx`, `apps/web/src/app/page.tsx`
 - API routes: `apps/web/src/app/api/*/route.ts` (e.g. `/api/health`)
-- Docs: `apps/web/src/app/(docs)/docs/**`; MDX content in `content/docs/` imported via `@content/docs/*`
+- Docs routes: `apps/web/src/app/(docs)/docs/**`; published MDX content in `content/docs/`
 
 ### Contributing: docs and content
 
-- **MDX-backed docs** live in **content/docs/** (e.g. `quickstart.mdx`, `telemetry.mdx`, `ml-pipeline.mdx`, `index.mdx`). Edit those files; the route under `apps/web/src/app/(docs)/docs/**` imports from `@content/docs/<name>.mdx`.
-- **TSX-only docs** (no MDX file) live only under `apps/web/src/app/(docs)/docs/**` (e.g. api, architecture, caching, installation). Edit them in place.
+- Published docs live in **content/docs/**. Edit those files; the route under `apps/web/src/app/(docs)/docs/**` imports from `@content/docs/<name>.mdx`.
+- Internal governance and claim-audit notes live in **docs/** and are not treated as a second public docs source.
+- Keep public claims in one of four buckets: what exists today, why it matters, what is proposed, and what must be proven.
 
 ## Linting & Formatting
 

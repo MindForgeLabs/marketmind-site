@@ -21,11 +21,6 @@ export function Footer() {
                   Features
                 </Link>
               </li>
-              <li>
-                <Link href="/integrations" className="hover:text-emerald-400 transition">
-                  Integrations
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -43,8 +38,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/guides" className="hover:text-emerald-400 transition">
-                  Guides
+                <Link href="/docs/quickstart" className="hover:text-emerald-400 transition">
+                  Quickstart
                 </Link>
               </li>
               <li>
@@ -53,8 +48,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/performance" className="hover:text-emerald-400 transition">
-                  Performance
+                <Link href="/docs/telemetry" className="hover:text-emerald-400 transition">
+                  Telemetry
                 </Link>
               </li>
             </ul>

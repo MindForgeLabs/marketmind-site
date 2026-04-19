@@ -7,19 +7,19 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm run dev --prefix apps/web",
-    "build": "cd apps/web && npx next build",
-    "start": "npm run start --prefix apps/web",
-    "lint": "npm run lint --prefix apps/web",
-    "type-check": "npm run type-check --prefix apps/web",
-    "format": "npm run format --prefix apps/web",
-    "storybook": "npm run storybook --prefix apps/web",
-    "build-storybook": "npm run build-storybook --prefix apps/web",
-    "test": "npm run test --prefix apps/web",
-    "test:watch": "npm run test:watch --prefix apps/web",
-    "test:unit": "npm run test:unit --prefix apps/web",
-    "test:ui": "npm run test:ui --prefix apps/web",
-    "test:ci": "npm run test:ci --prefix apps/web",
-    "test:sb": "npm run test:sb --prefix apps/web"
+    "dev": "npm run dev --workspace web",
+    "build": "npm run build --workspace web",
+    "start": "npm run start --workspace web",
+    "lint": "npm run lint --workspace web",
+    "type-check": "npm run type-check --workspace web",
+    "format": "npm run format --workspace web",
+    "storybook": "npm run storybook --workspace web",
+    "build-storybook": "npm run build-storybook --workspace web",
+    "test": "npm run test --workspace web",
+    "test:watch": "npm run test:watch --workspace web",
+    "test:unit": "npm run test:unit --workspace web",
+    "test:ui": "npm run test:ui --workspace web",
+    "test:ci": "npm run test:ci --workspace web",
+    "test:sb": "npm run test:sb --workspace web"
   }
 }

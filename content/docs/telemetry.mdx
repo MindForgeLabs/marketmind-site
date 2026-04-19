@@ -1,27 +1,28 @@
 # Telemetry & metrics
 
-This page describes **observability** for MarketMind runtimes: metrics, tracing, and logging so you can monitor pipelines and debug in production.
+This page describes observability for the current research substrate and planned future runtime surfaces. Current telemetry is about reproducible runs, artifact provenance, gate outcomes, and reviewable evidence. Production runtime telemetry is roadmap work.
 
 ---
 
-## What we expose
+## Current Scope
 
-- **Metrics** – Latency (e.g. P95), throughput, win rate, and other performance indicators. Exposed over the same surface as your strategy and API usage.
-- **Traces** – Request and pipeline spans so you can follow a decision from ingest through inference to execution.
-- **Logs** – Structured logs for errors, health checks, and key lifecycle events.
+- Run identifiers and deterministic artifact references.
+- Canonical bundle and provenance records.
+- Validation outcomes, including leakage-aware split discipline.
+- Gate status and reviewer-facing evidence summaries.
 
 ---
 
-## Using metrics in production
+## Planned Runtime Telemetry
 
-- Configure your observability backend (Prometheus, Grafana, or your existing stack) to scrape or receive metrics from the runtime.
-- Use the health and metrics endpoints to validate deployments and set SLOs.
-- See the [Quickstart](/docs/quickstart) for a minimal run, and the [ML pipeline](/docs/ml-pipeline) doc for how data flows through the system.
+Future Phase II/III work may add latency, throughput, live position, execution, and model drift telemetry. Those values must not be published as product facts until they are measured from a shipped runtime with provenance.
+
+Illustrative latency or throughput targets are roadmap targets only.
 
 ---
 
 ## Next steps
 
-- [Quickstart](/docs/quickstart) – get a minimal pipeline running.
-- [Architecture](/architecture) – system design and components.
-- [ML pipeline](/docs/ml-pipeline) – stages and data flow.
+- [Quickstart](/docs/quickstart) - orient to the current substrate.
+- [Architecture](/docs/architecture) - current and proposed system boundaries.
+- [ML pipeline](/docs/ml-pipeline) - planned allocator and training lane.

@@ -1,17 +1,25 @@
-# Website docs content (source of truth for MDX-backed docs)
+# Website docs content
 
-This directory is the **source of truth** for documentation pages that are backed by MDX files. Routes under `apps/web` import from here via the `@content/docs/*` alias.
+This directory is the source of truth for published documentation content. Routes under `apps/web/src/app/(docs)/docs/**` should be thin wrappers that import these MDX files via the `@content/docs/*` alias.
 
 ## Current content files
 
-- `index.mdx` – docs index (served at `/docs`)
-- `quickstart.mdx` – quickstart guide (`/docs/quickstart`)
-- `telemetry.mdx` – telemetry & metrics (`/docs/telemetry`)
-- `ml-pipeline.mdx` – ML pipeline overview (`/docs/ml-pipeline`)
+- `index.mdx` - docs index (`/docs`)
+- `quickstart.mdx` - current onboarding (`/docs/quickstart`)
+- `architecture.mdx` - current boundaries and future lanes (`/docs/architecture`)
+- `api.mdx` - current and planned API surfaces (`/docs/api`)
+- `strategies.mdx` - strategy research boundaries (`/docs/strategies`)
+- `risk.mdx` - research gates and planned risk controls (`/docs/risk`)
+- `installation.mdx` - workspace setup (`/docs/installation`)
+- `telemetry.mdx` - artifact and future runtime observability (`/docs/telemetry`)
+- `caching.mdx` - cache and provenance rules (`/docs/caching`)
+- `ml-pipeline.mdx` - planned allocator and training lane (`/docs/ml-pipeline`)
+- `cpp-runtime.mdx` - planned C++ runtime (`/docs/cpp-runtime`)
 
 ## For contributors
 
-- **MDX-backed docs** – Edit the `.mdx` files in this directory. The corresponding route lives under `apps/web/src/app/(docs)/docs/**` and imports from `@content/docs/<name>.mdx`. Do not duplicate content in the app tree.
-- **TSX-only docs** – Some doc routes are implemented only as TSX (no MDX file). Those live entirely under `apps/web/src/app/(docs)/docs/**` (e.g. `docs/api`, `docs/architecture`, `docs/caching`). Edit them in place; they are not in `content/docs/`.
+- Edit published docs here, not in the app route tree.
+- Keep app route files small: metadata plus `return <Content />`.
+- Put internal claim audits and ownership notes in `docs/`, not here.
 
-No catch-all routing is in use; each doc route is explicit.
+No catch-all routing is in use; each public doc route is explicit.

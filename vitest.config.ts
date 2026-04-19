@@ -11,6 +11,7 @@ const uiPath = path.resolve(dirname, 'packages/ui/src/index.ts')
 const domainPath = path.resolve(dirname, 'packages/domain/src/index.ts')
 
 export default defineConfig({
+    root: dirname,
     plugins: [react()],
     resolve: {
         alias: [
@@ -23,6 +24,10 @@ export default defineConfig({
         ],
     },
     test: {
+        include: [
+            'apps/web/src/**/*.test.{ts,tsx}',
+            'packages/ui/src/**/*.test.{ts,tsx}',
+        ],
         environment: 'jsdom',
         globals: true,
         setupFiles: [path.resolve(dirname, 'apps/web/vitest.setup.tsx')],

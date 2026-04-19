@@ -7,6 +7,7 @@ const config: Config = {
   content: [
     './src/app/**/*.{ts,tsx,md,mdx}',
     './src/components/**/*.{ts,tsx,md,mdx}',
+    '../../packages/ui/src/**/*.{ts,tsx}',
   ],
   theme: {
     extend: {

@@ -17,7 +17,6 @@ export default function DocsLayout({
       </a>
 
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
-        {/* Left-hand docs nav; simple for Phase 3, can grow later */}
         <aside className="lg:w-56 lg:flex-shrink-0">
           <div className="sticky top-24 space-y-4 text-sm text-slate-400">
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-300">

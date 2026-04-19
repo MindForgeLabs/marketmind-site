@@ -26,9 +26,9 @@ export default function FeaturesPage() {
   const roadmap = [
     {
       badge: "Planned (Phase III)",
-      title: "Ultra-Low Latency",
-      description: "Sub-3ms p95 inference with C++20 and TensorRT optimization. Not yet shipped.",
-      benefits: ["50–150x faster than Python-only stacks", "GPU acceleration", "Zero-copy pipelines"],
+      title: "Execution Runtime",
+      description: "C++/GPU inference and latency work are target architecture only. No measured production runtime is shipped.",
+      benefits: ["Measured latency required", "GPU path proposed", "Runtime evidence required"],
     },
     {
       badge: "Planned (Phase II, conditional)",
@@ -38,15 +38,15 @@ export default function FeaturesPage() {
     },
     {
       badge: "Planned (Phase III)",
-      title: "Enterprise Risk Controls",
+      title: "Execution Risk Controls",
       description: "Built-in position limits, drawdown protection, and kill switch. Not yet shipped.",
-      benefits: ["Real-time monitoring", "Automatic circuit breakers", "Audit logging"],
+      benefits: ["Live monitoring proposed", "Circuit breakers proposed", "Operational proof required"],
     },
     {
       badge: "Planned (Phase II+)",
       title: "Multi-Tier Caching",
       description: "L1–L4 cache hierarchy with TinyLFU admission. Not yet shipped.",
-      benefits: [">95% hit rate", "Sub-microsecond L1", "Intelligent promotion"],
+      benefits: ["Measured hit rates required", "Latency targets require provenance", "Promotion rules required"],
     },
   ];
 

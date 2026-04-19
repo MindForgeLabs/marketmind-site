@@ -12,11 +12,11 @@
   },
   "iconLibrary": "lucide",
   "aliases": {
-    "components": "@marketmind/components",
-    "utils": "@marketmind/lib/utils",
-    "ui": "@marketmind/components/ui",
-    "lib": "@marketmind/lib",
-    "hooks": "@marketmind/hooks"
+    "components": "@/components",
+    "utils": "@marketmind/ui",
+    "ui": "@marketmind/ui",
+    "lib": "@/lib",
+    "hooks": "@/lib/hooks"
   },
   "registries": {}
 }
