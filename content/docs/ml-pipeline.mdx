@@ -2,6 +2,25 @@
 
 Planned Phase II work. No training, inference, meta-policy allocator, ONNX export, TensorRT optimization, or deployment pipeline is shipped as current product truth.
 
+> **Note — GATE-II remains DEFERRED.** The evidence lanes below are bounded, non-promotable research artifacts. They are not allocator promotion, not execution-serious rollout, and not Tier-1 threshold resolution. The meta-learning allocator remains a roadmap candidate, not a delivered capability.
+
+## Phase II Research Evidence Lanes (non-promotable, II-C)
+
+The following milestones are closed as bounded evidence lanes. All thresholds remain provisional. None authorize allocator promotion or move GATE-II.
+
+| Milestone | Status | Description |
+|---|---|---|
+| MLC-0 | Closed (v7.3.2) | Promotable `MetaTask` dataclass, append-only `TaskRegistry`, BOCPD `RegimeLabeler` with `cold_start` field |
+| MLC-1 | Closed (v7.3.3) | Governed context encoder (2-layer MLP, D=64), encoder coherence diagnostics, example `encoder_coherence_report.json` |
+| MLC-2 | Closed (v7.3.5) | Canonical `build_meta_task(...)`, leakage/PIT/signal-mask checks, 5-bucket curriculum sampling, PER-like sampler |
+| MLC-3 | Closed (v7.3.7) | Bounded Reptile trainer with trainable-pool sufficiency gate, D0 replay helper, benchmark artifacts under `artifacts/phase_ii/mlc3/` |
+| MLC-4 | Closed (v7.3.8) | II-C query gain / K-budget behavior evidence (`reptile_k_sweep_*`), provisional THR-MLC4-*** rows |
+| MLC-5 | Closed (v7.3.10) | II-C proxy–IC alignment evidence, differentiable Spearman surrogate, hash-partitioned held-out pool, provisional THR-MLC5-*** rows |
+| MLC-6 | Closed (v7.3.11) | II-C EWC / continual-learning robustness evidence, from-scratch control + warm-start lambda sweep, `artifacts/phase_ii/mlc6/`, provisional THR-MLC6-*** rows |
+| MLC-7 | Deferred | Roadmap: `meta_policy.py` (promotable meta-policy network) — not yet built |
+
+**Active forward phase:** Phase II-A (Task Substrate & Validity Closure) is open as the authoritative sequencing surface for task substrate and W2 validity closure work toward trainer commitment. GATE-II remains DEFERRED.
+
 ## Current Research Boundary
 
 Phase II-0 is non-promotable scaffolding: artifact contract discipline and research-only pilot harness wiring. It is useful because it defines what evidence would be required. It is not allocator validation and does not move GATE-II.

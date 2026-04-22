@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## Unreleased
 
+### Companion truth sync (MarketMind 7.3.11 / MLC-6 closure)
+
+- **`docs/website-claims-policy.md`:** Canonical companion stamps advanced to README **7.3.11**, Implementation Plan **v6.5.23**, Technical Roadmap **v1.4.33**, Resolution Ledger **v1.0.67**; Threshold Governance Register **v1.0.6** added to the companion list. Meta-Learning Core **v1.2.25** and Architecture Vision **v1.3.6** unchanged.
+- **`content/docs/ml-pipeline.mdx`:** Added "Phase II Research Evidence Lanes (non-promotable, II-C)" section with MLC-0–6 closed / MLC-7 deferred table; GATE-II DEFERRED callout added at top; Phase II-A open noted as active forward phase.
+- **Marketing copy (homepage, features, about):** Phase status advanced from "Phase II-0 complete" to "MLC-0–6 bounded evidence lanes closed · Phase II-A open · GATE-II DEFERRED"; language on all three pages updated to reflect MLC-3 (Reptile trainer), MLC-4 (K-budget), MLC-5 (proxy alignment), and MLC-6 (EWC continual-learning robustness) without implying allocator promotion.
+
 ### Companion truth sync (MarketMind 7.2.3)
 
 - **`docs/website-claims-policy.md`:** Canonical companion stamps updated to README **7.2.3**, Implementation Plan **v6.5.10**, Technical Roadmap **v1.4.31**, Meta-Learning Core **v1.2.25**, Architecture Vision **v1.3.6**, Resolution Ledger **v1.0.52**; Phase II-0 rule clarified (II-0B / II-0C non-promotable harness vs promotable Phase II).

@@ -2,51 +2,60 @@ export default function FeaturesPage() {
   const currentPlatform = [
     {
       badge: "Available now",
-      title: "Auditable Run Bundles & Gates",
+      title: "Auditable Run Bundles",
       description:
-        "Single-command pipeline produces versioned artifacts (plan, env fingerprint, dataset manifest, splits, gate results). Fail-closed validation (CLI + runner) enforces schema integrity and leakage safeguards.",
-      benefits: ["Run bundle pipeline", "Gate CLI (Appendix C/D)", "Reproducible research runs"],
+        "A single command produces a versioned, reproducible bundle: plan identity, environment fingerprint, dataset manifest, leakage-safe splits, and gate results. Every run is a self-contained evidence package — not just backtest output.",
+      benefits: ["Canonical pipeline entrypoint", "Gate CLI (PASS / FAIL / exit codes)", "Immutable artifact identity (CAS)"],
     },
     {
       badge: "Available now",
-      title: "PIT-Safe Backtesting & Validation",
+      title: "Gate-First Validation",
       description:
-        "Governed backtest boundary with purge/embargo splits, leakage/property tests, and the first trusted stat_arb_pairs strategy slice. Content-addressable artifact registry (CAS) with run state machine.",
-      benefits: ["Purge/embargo splits", "Artifact registry (CAS)", "stat_arb_pairs on canonical path"],
+        "Fail-closed validation enforces schema integrity, point-in-time correctness, leakage invariants, and statistical gate checks before any result is considered credible. The gate runs on governed strategy slices including stat_arb_pairs and momentum.",
+      benefits: ["PIT-safe purge/embargo splits", "20 leakage property tests", "stat_arb_pairs on canonical path"],
     },
     {
-      badge: "Phase II-0 (non-promotable)",
-      title: "Governed artifacts & pilot harness",
+      badge: "Phase II-A active · GATE-II deferred",
+      title: "Research Evidence Program",
       description:
-        "Non-promotable Phase II-0 lane: governed II-0B artifact triple and contract discipline are complete on that path; II-0C adds a research-only pilot harness (wiring and reviewer shells — not encoder validity or allocator proof). Not promotable Phase II machinery.",
-      benefits: ["II-0B governed triple + shell checks", "II-0C research-only harness", "Threshold governance hooks (borrowed refs, reviewer visibility)"],
+        "Phase II-0 is complete as the non-promotable bridge (II-0B governed artifact triple, II-0C research pilot harness). Six bounded Phase II-C evidence lanes are closed: task construction, encoder coherence, curriculum sampling, Reptile training, K-budget behavior, proxy–IC alignment, and EWC forgetting robustness. All thresholds are provisional. Phase II-A is the active forward phase toward task-substrate validity closure.",
+      benefits: [
+        "II-0B governed artifact triple (non-promotable)",
+        "II-0C research pilot harness (non-promotable)",
+        "MLC-0–6 closed · provisional thresholds",
+        "Phase II-A open · GATE-II deferred",
+      ],
     },
   ];
 
   const roadmap = [
     {
+      badge: "Planned (Phase II, conditional)",
+      title: "Meta-Learning Allocator",
+      description:
+        "A promotable regime-indexed allocator that recombines signals as market regimes shift. Conditional on Phase II evidence beating a simpler XGBoost incumbent baseline net of costs. Not built yet.",
+      benefits: ["Must beat simpler baseline", "Regime-indexed tasks", "Governed promotion gate"],
+    },
+    {
       badge: "Planned (Phase III)",
       title: "Execution Runtime",
-      description: "C++/GPU inference and latency work are target architecture only. No measured production runtime is shipped.",
-      benefits: ["Measured latency required", "GPU path proposed", "Runtime evidence required"],
-    },
-    {
-      badge: "Planned (Phase II, conditional)",
-      title: "Hybrid ML Models",
-      description: "Promotable meta-learning allocator combining Transformers, LSTMs, and classical indicators — conditional on Phase II-0 scaffolding confirming a viable evidence path. Not yet shipped.",
-      benefits: ["Flexible architecture", "ONNX export", "Fast iteration"],
+      description:
+        "C++/GPU inference, ONNX export, and TensorRT optimisation. Target architecture only — no measured production runtime exists today. Conditional on Phase II validation.",
+      benefits: ["C++ inference path proposed", "ONNX / TensorRT target", "Latency evidence required"],
     },
     {
       badge: "Planned (Phase III)",
-      title: "Execution Risk Controls",
-      description: "Built-in position limits, drawdown protection, and kill switch. Not yet shipped.",
-      benefits: ["Live monitoring proposed", "Circuit breakers proposed", "Operational proof required"],
+      title: "Live Execution & Risk Controls",
+      description:
+        "Broker integration, live data feeds, position limits, drawdown circuit breakers, and kill-switch governance. Conditional on Phase II allocator proof and execution-realism build.",
+      benefits: ["Broker wiring conditional", "Kill-switch governance", "Paper-trading sim precedes live"],
     },
     {
-      badge: "Planned (Phase II+)",
-      title: "Multi-Tier Caching",
-      description: "L1–L4 cache hierarchy with TinyLFU admission. Not yet shipped.",
-      benefits: ["Measured hit rates required", "Latency targets require provenance", "Promotion rules required"],
+      badge: "Planned (Phase IV)",
+      title: "Signal Factory",
+      description:
+        "Governed signal onboarding, novelty / similarity screening, automated discovery loops, and breadth expansion beyond the current narrow base. Signal-factory-serious work begins only after allocator validation.",
+      benefits: ["Governed admission criteria", "SignalCatalog foundation exists", "Scale only after allocator proof"],
     },
   ];
 
@@ -55,7 +64,7 @@ export default function FeaturesPage() {
       <div className="max-w-7xl mx-auto px-6 py-16">
         <h1 className="text-4xl font-bold mb-4">Features</h1>
         <p className="text-xl text-slate-300 mb-12">
-          Governed backtesting and validation delivered (Phase 0 & Phase I); Phase II-0 non-promotable harness complete (II-0B artifact lane + II-0C research pilot wiring); promotable ML and execution are roadmap items.
+          The governed research substrate is shipped. The adaptive allocator is a roadmap candidate, not a delivered capability.
         </p>
 
         <section className="mb-16" aria-labelledby="current-platform-heading">
@@ -90,7 +99,7 @@ export default function FeaturesPage() {
             Roadmap
           </h2>
           <p className="text-sm text-slate-500 mb-6">
-            Planned — not yet shipped. Timeline and scope subject to change.
+            Planned — not yet shipped. Each phase is conditional on the previous phase producing the required evidence.
           </p>
           <div className="grid md:grid-cols-2 gap-8">
             {roadmap.map((feature) => (

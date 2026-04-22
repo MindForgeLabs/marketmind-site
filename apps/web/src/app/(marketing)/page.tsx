@@ -105,10 +105,10 @@ const generateData = () => {
 
 const metrics = [
   {
-    label: "Research phase status",
-    value: "9/9",
+    label: "Active research phase",
+    value: "II-A",
     detail:
-      "Phase 0 & Phase I complete · II-0B governed artifact lane complete (non-promotable) · II-0C pilot harness complete (research-only wiring, not Phase II)",
+      "Phase II-A: Task Substrate & Validity Closure · Phase 0 & I complete · Phase II-0 complete · MLC-0–6 closed · GATE-II deferred",
     icon: Shield,
     color: "text-emerald-400",
   },
@@ -240,7 +240,7 @@ export default function MarketMindHero() {
           >
             <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
             <span className="text-sm text-emerald-400 font-medium">
-              Audit-first backtesting · gates · reproducibility
+              Governed backtesting · auditable artifacts · gate-first validation
             </span>
           </div>
 
@@ -252,7 +252,7 @@ export default function MarketMindHero() {
                   mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                 }`}
               >
-                MarketMind is a validation-first algorithmic trading R&D platform.
+                Research that earns its claims before it scales.
               </h1>
 
               <p
@@ -260,7 +260,7 @@ export default function MarketMindHero() {
                   mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                 }`}
               >
-                It delivers governed backtesting, auditable run bundles, and gate validation so you can develop and evaluate strategies without leakage or unvalidated promotion.
+                MarketMind is a validation-first algorithmic trading R&D platform. It produces auditable run bundles, enforces leakage-safe splits, and gates every result through fail-closed statistical checks — so the research substrate can be trusted before adaptive machinery is built on top of it.
               </p>
 
               <p
@@ -268,7 +268,7 @@ export default function MarketMindHero() {
                   mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                 }`}
               >
-                Phase 0 and Phase I are complete — the foundational research substrate, governing protocols, and proof burden are frozen as source of truth. On the non-promotable Phase II-0 lane, the governed II-0B artifact contract is complete and the II-0C pilot harness is complete as research-only wiring and reviewer shells (not promotable Phase II evidence, no GATE-II movement). Meta-learning and low-latency execution remain on the roadmap, conditional on validation evidence.
+                Phase 0 and Phase I are complete and frozen as the governing research substrate. Phase II-0 is complete as the non-promotable bridge; six bounded Phase II-C evidence lanes (MLC-0–6) are now closed, covering task construction, encoder coherence, curriculum sampling, Reptile training, K-budget behavior, proxy–IC alignment, and EWC forgetting robustness. Phase II-A is the active forward phase. The meta-learning allocator, C++ inference, and production execution remain roadmap items conditional on validation evidence.
               </p>
 
               <div
@@ -419,12 +419,12 @@ export default function MarketMindHero() {
             </p>
           </Card>
           <Card className="border-border/60 bg-slate-900/60 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-amber-400/90">Planned</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-amber-400/90">Phase II-A active</p>
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 mt-1">
               Meta-learning
             </p>
             <p className="mt-2 text-sm text-slate-50">
-              Roadmap: meta-learning combiner with walk-forward validation and portfolio feedback.
+              Task substrate &amp; validity closure in progress. MLC-0–6 evidence lanes closed. Promotable allocator conditional on GATE-II evidence.
             </p>
           </Card>
           <Card className="border-border/60 bg-slate-900/60 p-4">
@@ -649,7 +649,7 @@ export default function MarketMindHero() {
               Ready to Wire This Into Your Stack?
             </h2>
             <p className="text-lg sm:text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Phase I is complete — the research protocols and governing frameworks are frozen as source of truth. Phase II-0 non-promotable work includes a complete governed II-0B artifact lane and a complete II-0C research pilot harness (wiring and shells only — not the meta-learning allocator). The meta-learning allocator, C++ inference service, streaming data, and production telemetry remain roadmap deliverables.
+              The governed research substrate is ready. Phase 0 and Phase I are frozen. Six bounded II-C evidence lanes are closed. If you want to run governed backtests, inspect the artifact contract, or contribute to the validation program, start with the quickstart or reach out directly.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a

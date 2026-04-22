@@ -5,47 +5,59 @@ export default function AboutPage() {
         <h1 className="text-4xl font-bold mb-8">About MarketMind</h1>
 
         {/* Current scope vs Where we're headed */}
-        <div className="mb-12 rounded-lg border border-slate-700 bg-slate-900/50 p-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-400/90 mb-2">
-            What we ship today
-          </p>
-          <p className="text-sm text-slate-300 mb-4">
-            MarketMind is a validation-first algorithmic trading R&D platform focused on governed backtesting, reproducibility, and gate validation. We deliver auditable run bundles, fail-closed validation, PIT-safe backtesting, and the first trusted strategy slice (stat_arb_pairs) on the canonical path. Phase I research protocols and governing frameworks — data governance charter, threshold governance register, signal generation protocol, and Phase II artifact contract — are now frozen as source of truth.
-          </p>
-          <p className="text-xs font-semibold uppercase tracking-wide text-amber-400/90 mb-2">
-            Where we&apos;re headed
-          </p>
-          <div className="text-sm text-slate-400 space-y-3">
-            <p>
-              <span className="text-slate-300 font-medium">Phase II-0 (non-promotable, not Phase II):</span> The governed II-0B artifact-and-contract lane is complete on that lane; the II-0C pilot harness is complete as research-only MetaTask, comparison, and reporting wiring (including reviewer shells) — still no promotable trainer, allocator, or GATE-II promotion.
+        <div className="mb-12 rounded-lg border border-slate-700 bg-slate-900/50 p-6 space-y-5">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide text-emerald-400/90 mb-2">
+              What ships today
             </p>
-            <p>
-              <span className="text-slate-300 font-medium">Phase II (conditional, validation-gated):</span> Promotable meta-learning allocator and regime-indexed task learning — only if the validation scaffolding confirms a viable evidence path against the incumbent baseline. Not shipped today.
+            <p className="text-sm text-slate-300">
+              A governed research substrate: auditable run bundles, fail-closed gate validation, PIT-safe backtesting, and the first trusted strategy slices on the canonical path. Phase 0 and Phase I are complete and frozen as source of truth. Research protocols, the Phase II artifact contract, the data governance charter, and the threshold governance register are all documented and enforced.
             </p>
-            <p>
-              <span className="text-slate-300 font-medium">Phase III (conditional):</span> C++/GPU inference, live execution, ML training pipelines, live data feeds, and broker integration — conditional on Phase II validation. Not shipped today.
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide text-amber-400/90 mb-2">
+              Active research (Phase II-A)
+            </p>
+            <p className="text-sm text-slate-400">
+              Phase II-0 is complete as the non-promotable bridge. Six bounded Phase II-C evidence lanes — task construction, encoder coherence, curriculum sampling, Reptile training, K-budget behavior, proxy–IC alignment, and EWC forgetting robustness — are closed with provisional thresholds. Phase II-A (Task Substrate &amp; Validity Closure) is the current forward phase. GATE-II remains deferred; no allocator promotion has occurred.
+            </p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 mb-2">
+              Conditional roadmap
+            </p>
+            <p className="text-sm text-slate-500">
+              A promotable meta-learning allocator (Phase II), C++/GPU inference and live execution (Phase III), and signal-factory automation at scale (Phase IV) — each conditional on the previous phase producing the required evidence. None of these are shipped today.
             </p>
           </div>
         </div>
 
         <section className="mb-12">
-          <p className="text-xl text-slate-300 leading-relaxed mb-6">
-            Validation-first algorithmic trading R&D platform focused on governed backtesting, reproducibility, and gate validation.
-          </p>
-          <p className="text-lg text-slate-400 leading-relaxed">
-            Built by quants and engineers, for quants and engineers. The platform is designed to enable
-            systematic strategy development with transparent, auditable results and measurable validation.
-          </p>
+          <h2 className="text-2xl font-semibold mb-4">Why we built it this way</h2>
+          <div className="space-y-4 text-slate-300 leading-relaxed">
+            <p>
+              Markets are non-stationary. Long-lived edge comes from maintaining many weak, diverse signals and recombining them as regimes shift — not from fitting a single model and hoping it holds. That thesis is easy to state and hard to test honestly. MarketMind is designed to make honest testing tractable.
+            </p>
+            <p>
+              The core problem with most algorithmic trading research is that the validation infrastructure is an afterthought. Leakage creeps in through look-ahead in splits, mislabeled time boundaries, or results that can&apos;t be reproduced from canonical inputs. MarketMind treats the research substrate — point-in-time data access, artifact provenance, fail-closed statistical gates — as the primary deliverable, not a supporting detail.
+            </p>
+            <p>
+              That posture also shapes how we approach the adaptive allocator. Rather than building it first and validating it later, the platform is designed to accumulate evidence in order: freeze the task construction story, close each evidence lane, and only promote adaptive machinery when it demonstrably beats a simpler baseline net of realistic costs. The kill criterion is explicit: if the simpler regime-conditioned baseline wins, the adaptive path stops.
+            </p>
+            <p>
+              The result is a system whose current value is the substrate itself — trustworthy bundles, auditable provenance, and a clear separation between what is proven and what is still a governed hypothesis.
+            </p>
+          </div>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Technology Principles</h2>
+          <h2 className="text-2xl font-semibold mb-4">Technology principles</h2>
           <div className="space-y-4 text-slate-300">
             <p>
-              MarketMind uses a multi-language architecture. Today: Python for orchestration and backtesting, Java for the desktop UI. On the roadmap: C++ for inference, expanded observability, and TypeScript for the web — each optimized for its role when those phases ship.
+              Python for orchestration and research today; C++ and ONNX on the roadmap for inference-serious deployment when Phase II evidence justifies the build. Java for the desktop UI. TypeScript and Next.js for the public web surface.
             </p>
             <p>
-              Every feature is designed with observability and safety in mind. Canonical truth for what is delivered comes from the MarketMind repo docs (README, Implementation Plan, Technical Roadmap), not aspirational site copy.
+              Every externally visible claim about what the platform does is held to the same standard as the research itself: present tense only for delivered capabilities, explicit phase labels for everything else. The canonical source of truth is the MarketMind repo docs — not aspirational site copy.
             </p>
           </div>
         </section>
@@ -53,7 +65,7 @@ export default function AboutPage() {
         <section>
           <h2 className="text-2xl font-semibold mb-4">Contact</h2>
           <p className="text-slate-300">
-            Interested in collaborating or using MarketMind?{" "}
+            Interested in collaborating or learning more?{" "}
             <a href="/contact" className="text-emerald-400 hover:underline">
               Get in touch
             </a>
