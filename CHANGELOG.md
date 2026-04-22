@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## Unreleased
 
+### About page revamp (MarketMind 7.3.13 / W1 baseline harness open)
+
+- **`apps/web/src/app/(marketing)/about/page.tsx`:** Full narrative rewrite drawing on README 7.3.13, MetaLearningCore v1.3.0, WhitePaper, and MetaLearningArchitectureVision. New sections: "The core idea" (Medallion Fund / diverse-signal thesis, non-technical framing); "Why the validation infrastructure comes first" (failure modes, fail-closed gates); "The burden of proof is on the complex system" (null hypothesis, W1 baseline harness, explicit kill criterion, WhitePaper conclusion line); "What the platform has established" (MLC-0–6 in readable prose, correctly non-promotable). Status callout updated to 7.3.13 state: W1 baseline harness now open alongside MLC-0–6 closed; Phase II-A noted as active forward phase; GATE-II DEFERRED maintained.
+
 ### Companion truth sync (MarketMind 7.3.11 / MLC-6 closure)
 
 - **`docs/website-claims-policy.md`:** Canonical companion stamps advanced to README **7.3.11**, Implementation Plan **v6.5.23**, Technical Roadmap **v1.4.33**, Resolution Ledger **v1.0.67**; Threshold Governance Register **v1.0.6** added to the companion list. Meta-Learning Core **v1.2.25** and Architecture Vision **v1.3.6** unchanged.

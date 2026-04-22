@@ -268,7 +268,7 @@ export default function MarketMindHero() {
                   mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                 }`}
               >
-                Phase 0 and Phase I are complete and frozen as the governing research substrate. Phase II-0 is complete as the non-promotable bridge; six bounded Phase II-C evidence lanes (MLC-0–6) are now closed, covering task construction, encoder coherence, curriculum sampling, Reptile training, K-budget behavior, proxy–IC alignment, and EWC forgetting robustness. Phase II-A is the active forward phase. The meta-learning allocator, C++ inference, and production execution remain roadmap items conditional on validation evidence.
+                The long-term goal is a system that learns which strategies work as market conditions shift — and adapts in a way that can be audited, reproduced, and trusted. Getting there requires building the validation foundation first.
               </p>
 
               <div
@@ -398,6 +398,50 @@ export default function MarketMindHero() {
             <span>TensorRT / CUDA (planned)</span>
             <span className="h-[1px] w-6 bg-slate-700" />
             <span>JavaFX · Spring Boot</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Vision section */}
+      <section className="max-w-7xl mx-auto px-6 py-20" aria-labelledby="vision-heading">
+        <div className="text-center mb-14">
+          <h2 id="vision-heading" className="text-3xl sm:text-4xl font-bold mb-4">
+            Why build it this way?
+          </h2>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            The goal is ambitious. The approach is deliberately conservative. Here is why that combination makes sense.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="bg-slate-900/40 border border-white/8 rounded-2xl p-8">
+            <div className="w-10 h-10 rounded-lg bg-emerald-500/15 flex items-center justify-center mb-5">
+              <TrendingUp className="w-5 h-5 text-emerald-400" />
+            </div>
+            <h3 className="text-xl font-semibold mb-3">The long-term vision</h3>
+            <p className="text-slate-400 leading-relaxed">
+              Markets are not static. A strategy that works in a low-volatility regime can fail badly when conditions shift. The goal is a system that maintains a library of diverse signals and learns — in a governed, auditable way — how to recombine them as regimes change. Not a single model optimised for one era. A system that adapts without abandoning rigour.
+            </p>
+          </div>
+
+          <div className="bg-slate-900/40 border border-white/8 rounded-2xl p-8">
+            <div className="w-10 h-10 rounded-lg bg-amber-500/15 flex items-center justify-center mb-5">
+              <Shield className="w-5 h-5 text-amber-400" />
+            </div>
+            <h3 className="text-xl font-semibold mb-3">The problem worth solving first</h3>
+            <p className="text-slate-400 leading-relaxed">
+              Most trading research looks more convincing than it is. Backtests are easy to overfit — even unintentionally. Results that cannot be reproduced, or that relied on data the model should not have seen, create a false sense of confidence. The harder and more important work is building the infrastructure that makes those failure modes impossible before building anything adaptive on top.
+            </p>
+          </div>
+
+          <div className="bg-slate-900/40 border border-white/8 rounded-2xl p-8">
+            <div className="w-10 h-10 rounded-lg bg-blue-500/15 flex items-center justify-center mb-5">
+              <Layers className="w-5 h-5 text-blue-400" />
+            </div>
+            <h3 className="text-xl font-semibold mb-3">Why the substrate comes first</h3>
+            <p className="text-slate-400 leading-relaxed">
+              Every result in MarketMind must pass through governed validation gates before it can be used as evidence. Provenance is tracked. Results are reproducible from canonical inputs. The adaptive allocator gets built only after the foundation can be trusted — and only if it demonstrably beats a simpler baseline once realistic costs are counted. If it does not, the simpler system wins.
+            </p>
           </div>
         </div>
       </section>
